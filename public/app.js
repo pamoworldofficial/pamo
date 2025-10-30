@@ -1,1 +1,1948 @@
-const _0x218639=_0x259e;(function(_0x18cc8c,_0xff3d0a){const _0x29a5e0=_0x259e,_0xdca650=_0x18cc8c();while(!![]){try{const _0x5cdb7d=parseInt(_0x29a5e0(0x1b3))/0x1+-parseInt(_0x29a5e0(0x2a3))/0x2+parseInt(_0x29a5e0(0x2ba))/0x3*(-parseInt(_0x29a5e0(0x28b))/0x4)+parseInt(_0x29a5e0(0x14c))/0x5*(-parseInt(_0x29a5e0(0x2b4))/0x6)+-parseInt(_0x29a5e0(0x230))/0x7*(-parseInt(_0x29a5e0(0x271))/0x8)+parseInt(_0x29a5e0(0x170))/0x9+-parseInt(_0x29a5e0(0x221))/0xa*(-parseInt(_0x29a5e0(0x2b9))/0xb);if(_0x5cdb7d===_0xff3d0a)break;else _0xdca650['push'](_0xdca650['shift']());}catch(_0x1d5fcd){_0xdca650['push'](_0xdca650['shift']());}}}(_0x4af6,0x7ba94));import{maps}from'./map.js';const socket=io(_0x218639(0x29a),{'transports':[_0x218639(0x194)]}),rawMapList=maps[_0x218639(0x21c)](_0x3c0625=>_0x3c0625['name']),locationTemplates=Object['fromEntries'](maps[_0x218639(0x21c)](_0x173ffe=>[_0x173ffe[_0x218639(0x240)],_0x173ffe['positions']])),firstJobNames={'전사':'검사','법사':_0x218639(0x14d),'궁수':'아처','도적':'로그'},jobLines={'전사':[['파이터',_0x218639(0x18d),_0x218639(0x1d3)],['스피어맨',_0x218639(0x252),_0x218639(0x15a)],[_0x218639(0x26e),_0x218639(0x2c9),_0x218639(0x25d)]],'법사':[['위자드(불,독)',_0x218639(0x1a0),'아크메이지(불,독)'],[_0x218639(0x150),_0x218639(0x1f7),_0x218639(0x168)],[_0x218639(0x225),_0x218639(0x173),'비숍']],'궁수':[['헌터','레인저','보우마스터'],['사수',_0x218639(0x20b),'신궁']],'도적':[[_0x218639(0x206),'허밋','나이트로드'],['시프',_0x218639(0x1c9),_0x218639(0x205)]]},TEXTS={'header':{'title':_0x218639(0x1ed),'timer':'⏱️','darkMode':'🌙'},'myInfo':{'title':_0x218639(0x213),'toggle':'접기','nickname':_0x218639(0x154),'socialCode':_0x218639(0x262),'level':'레벨','jobCategory':'직업','jobDetail':_0x218639(0x1b9),'extraInfo':'추가\x20정보\x20(스공/마력,\x20스킬)','save':'저장'},'myParty':{'title':_0x218639(0x1d7),'partyName':_0x218639(0x219),'addPosition':'➕','description':'파티\x20설명\x20입력','createPrivate':_0x218639(0x216),'create':_0x218639(0x1ad),'editDescription':'수정'},'joinRequests':{'title':_0x218639(0x1bb),'hint':'📢\x20수락\x20후에는\x20메이플월드\x20소셜\x20친구\x20요청을\x20확인하거나,\x20게임\x20내\x20귓속말을\x20확인하세요.'},'allParties':{'title':_0x218639(0x1b8),'search':'사냥터\x20이름\x20검색','noParties':_0x218639(0x2ae)},'footer':{'contact':_0x218639(0x1ef),'email':_0x218639(0x282),'copyIcon':'📋','copyright':_0x218639(0x160)}};function _0x259e(_0x1cece5,_0x5ee676){const _0x4af6d7=_0x4af6();return _0x259e=function(_0x259eb5,_0x678d85){_0x259eb5=_0x259eb5-0x149;let _0x522578=_0x4af6d7[_0x259eb5];return _0x522578;},_0x259e(_0x1cece5,_0x5ee676);}function applyTexts(){const _0x5dd11e=_0x218639;document[_0x5dd11e(0x158)](_0x5dd11e(0x1e7))[_0x5dd11e(0x228)]=TEXTS['header'][_0x5dd11e(0x198)],document[_0x5dd11e(0x203)](_0x5dd11e(0x23f))[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x18a)][_0x5dd11e(0x1f2)],document[_0x5dd11e(0x203)](_0x5dd11e(0x21d))['textContent']=TEXTS['header'][_0x5dd11e(0x176)],document[_0x5dd11e(0x158)]('#myInfoSection\x20h2')[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x2b1)][_0x5dd11e(0x198)],document[_0x5dd11e(0x203)](_0x5dd11e(0x2bd))[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x2b1)][_0x5dd11e(0x2b0)],document[_0x5dd11e(0x203)](_0x5dd11e(0x1e9))[_0x5dd11e(0x227)]=TEXTS['myInfo'][_0x5dd11e(0x25c)],document['getElementById']('socialCodeInput')[_0x5dd11e(0x227)]=TEXTS[_0x5dd11e(0x2b1)][_0x5dd11e(0x298)],document[_0x5dd11e(0x203)](_0x5dd11e(0x2a8))[_0x5dd11e(0x227)]=TEXTS[_0x5dd11e(0x2b1)][_0x5dd11e(0x259)],document['querySelector'](_0x5dd11e(0x28c))[_0x5dd11e(0x228)]=TEXTS['myInfo']['jobCategory'],document[_0x5dd11e(0x158)](_0x5dd11e(0x251))[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x2b1)][_0x5dd11e(0x155)],document[_0x5dd11e(0x203)]('extraInfoInput')['placeholder']=TEXTS['myInfo'][_0x5dd11e(0x208)],document['getElementById']('saveUserBtn')[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x2b1)]['save'],document['querySelector'](_0x5dd11e(0x1e8))['textContent']=TEXTS[_0x5dd11e(0x23d)][_0x5dd11e(0x198)],document['getElementById'](_0x5dd11e(0x1f0))[_0x5dd11e(0x227)]=TEXTS['myParty'][_0x5dd11e(0x1eb)],document[_0x5dd11e(0x203)](_0x5dd11e(0x18c))[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x23d)][_0x5dd11e(0x25f)],document[_0x5dd11e(0x203)](_0x5dd11e(0x24e))[_0x5dd11e(0x227)]=TEXTS[_0x5dd11e(0x23d)][_0x5dd11e(0x26b)],document[_0x5dd11e(0x203)](_0x5dd11e(0x244))[_0x5dd11e(0x227)]=TEXTS[_0x5dd11e(0x23d)]['description'],document[_0x5dd11e(0x203)](_0x5dd11e(0x20a))[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x23d)][_0x5dd11e(0x191)],document[_0x5dd11e(0x203)]('createPartyBtn')[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x23d)][_0x5dd11e(0x2ad)],document['getElementById'](_0x5dd11e(0x1f3))['textContent']=TEXTS['myParty']['editDescription'],document['querySelector'](_0x5dd11e(0x187))[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x1b4)][_0x5dd11e(0x198)],document[_0x5dd11e(0x203)](_0x5dd11e(0x257))[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x1b4)]['hint'],document['querySelector'](_0x5dd11e(0x22c))[_0x5dd11e(0x228)]=TEXTS['allParties']['title'],document[_0x5dd11e(0x203)](_0x5dd11e(0x264))['placeholder']=TEXTS[_0x5dd11e(0x241)][_0x5dd11e(0x286)],document[_0x5dd11e(0x203)](_0x5dd11e(0x274))['textContent']=TEXTS['allParties'][_0x5dd11e(0x2c2)],document[_0x5dd11e(0x203)](_0x5dd11e(0x214))['textContent']=TEXTS['footer'][_0x5dd11e(0x190)],document[_0x5dd11e(0x203)](_0x5dd11e(0x2c7))[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x2ca)][_0x5dd11e(0x2c7)],document[_0x5dd11e(0x203)](_0x5dd11e(0x290))['textContent']=TEXTS['footer'][_0x5dd11e(0x290)],document[_0x5dd11e(0x203)](_0x5dd11e(0x2aa))[_0x5dd11e(0x228)]=TEXTS[_0x5dd11e(0x2ca)]['copyright'];}const nicknameInput=document[_0x218639(0x203)]('nicknameInput'),levelInput=document[_0x218639(0x203)](_0x218639(0x2a8)),jobCategorySelect=document[_0x218639(0x203)]('jobCategorySelect'),jobSelect=document['getElementById'](_0x218639(0x16a)),socialCodeInput=document['getElementById']('socialCodeInput'),extraInfoInput=document[_0x218639(0x203)]('extraInfoInput'),saveMsg=document[_0x218639(0x203)](_0x218639(0x15b)),saveUserBtn=document[_0x218639(0x203)](_0x218639(0x17b)),partyNameInput=document['getElementById'](_0x218639(0x1f0)),partyDescriptionInput=document[_0x218639(0x203)](_0x218639(0x24e)),partyDescriptionContainer=document['getElementById'](_0x218639(0x1bf)),partyDescriptionEdit=document[_0x218639(0x203)](_0x218639(0x244)),editDescriptionBtn=document['getElementById'](_0x218639(0x1f3)),partyDescriptionView=document['getElementById'](_0x218639(0x16b)),addPositionBtn=document[_0x218639(0x203)](_0x218639(0x18c)),positionInputsContainer=document[_0x218639(0x203)](_0x218639(0x212)),createPartyBtn=document['getElementById'](_0x218639(0x279)),createPrivatePartyBtn=document[_0x218639(0x203)](_0x218639(0x20a)),partySearchInput=document[_0x218639(0x203)](_0x218639(0x264));function initMyInfoToggle(){const _0x51c537=_0x218639,_0x1f8bde=localStorage[_0x51c537(0x1b0)](_0x51c537(0x164))===_0x51c537(0x28e);applyMyInfoToggleState(_0x1f8bde);}function applyMyInfoToggleState(_0x15c28f){const _0x281efc=_0x218639,_0x20a2b5=document[_0x281efc(0x203)](_0x281efc(0x2bd)),_0x2e3502=document[_0x281efc(0x203)](_0x281efc(0x1d5));_0x20a2b5[_0x281efc(0x1f8)](_0x281efc(0x157),!_0x15c28f),_0x2e3502[_0x281efc(0x2bc)][_0x281efc(0x285)]=_0x15c28f?_0x281efc(0x1a4):_0x281efc(0x27d),_0x20a2b5[_0x281efc(0x228)]=_0x15c28f?_0x281efc(0x1ce):'접기';}function getJobStage(_0xa12d70){if(_0xa12d70>=0x78)return 0x2;if(_0xa12d70>=0x46)return 0x1;if(_0xa12d70>=0x1e)return 0x0;return-0x1;}let currentJobLineIndex=null,currentJobCategoryTemp=null,currentJobName=null;function updateJobOptionsRestore(_0x2d3e75,_0x591a2b){const _0x5ec527=_0x218639,_0x51b30e=_0x2d3e75||jobCategorySelect[_0x5ec527(0x22f)],_0x4b2da3=Number(levelInput['value']);jobSelect[_0x5ec527(0x232)]=_0x5ec527(0x18b);if(!_0x51b30e){jobSelect['disabled']=!![];return;}if(_0x4b2da3<0x1e){const _0x5d5a7c=firstJobNames[_0x51b30e];if(_0x5d5a7c){const _0x4d8eb3=document[_0x5ec527(0x24b)](_0x5ec527(0x2b6));_0x4d8eb3[_0x5ec527(0x22f)]=_0x5d5a7c,_0x4d8eb3[_0x5ec527(0x228)]=_0x5d5a7c,jobSelect[_0x5ec527(0x19a)](_0x4d8eb3),jobSelect[_0x5ec527(0x22f)]=_0x5d5a7c,jobSelect[_0x5ec527(0x1af)]=![];}else jobSelect[_0x5ec527(0x1af)]=!![];return;}const _0x3debed=getJobStage(_0x4b2da3),_0x2e3274=jobLines[_0x51b30e];if(!_0x2e3274){jobSelect['disabled']=!![];return;}const _0x544d76=_0x2e3274[_0x5ec527(0x21c)](_0x168539=>_0x168539[_0x3debed]);_0x544d76[_0x5ec527(0x24d)](_0x981f0d=>{const _0x4b660b=_0x5ec527,_0x3eece0=document[_0x4b660b(0x24b)](_0x4b660b(0x2b6));_0x3eece0[_0x4b660b(0x22f)]=_0x981f0d,_0x3eece0['textContent']=_0x981f0d,jobSelect['appendChild'](_0x3eece0);});if(_0x591a2b){jobSelect[_0x5ec527(0x22f)]=_0x591a2b;for(let _0x333dc0=0x0;_0x333dc0<_0x2e3274[_0x5ec527(0x27e)];_0x333dc0++){if(_0x2e3274[_0x333dc0][_0x5ec527(0x24a)](_0x591a2b)){currentJobLineIndex=_0x333dc0,currentJobCategoryTemp=_0x51b30e,currentJobName=_0x591a2b;break;}}}else currentJobCategoryTemp===_0x51b30e&&currentJobLineIndex!==null&&_0x2e3274[currentJobLineIndex]?jobSelect['value']=_0x2e3274[currentJobLineIndex][_0x3debed]:(jobSelect['value']='',currentJobCategoryTemp=_0x51b30e,currentJobLineIndex=null,currentJobName=null);jobSelect[_0x5ec527(0x1af)]=![];}function updateJobOptions(){const _0x24f955=_0x218639;updateJobOptionsRestore(jobCategorySelect[_0x24f955(0x22f)],null);}levelInput[_0x218639(0x2b3)](_0x218639(0x159),()=>{const _0x16cc77=_0x218639;let _0x16e9e8=parseInt(levelInput[_0x16cc77(0x22f)],0xa);if(_0x16e9e8>0xc8)_0x16e9e8=0xc8;levelInput[_0x16cc77(0x22f)]=_0x16e9e8,updateJobOptions();}),jobCategorySelect[_0x218639(0x2b3)](_0x218639(0x175),()=>{currentJobLineIndex=null,currentJobCategoryTemp=null,currentJobName=null,updateJobOptions();}),jobSelect[_0x218639(0x2b3)](_0x218639(0x175),()=>{const _0x58a449=_0x218639,_0x48f115=jobCategorySelect['value'],_0xea998c=jobLines[_0x48f115],_0x2a62ae=jobSelect[_0x58a449(0x22f)];if(!_0xea998c)return;currentJobCategoryTemp=_0x48f115,currentJobName=_0x2a62ae;for(let _0x24de04=0x0;_0x24de04<_0xea998c[_0x58a449(0x27e)];_0x24de04++){if(_0xea998c[_0x24de04]['includes'](_0x2a62ae)){currentJobLineIndex=_0x24de04;break;}}});let myUserId=null,myPartyId=null,amIPartyLeader=![],privatePartyPassword=null,requestedPartyId=null,pendingRefresh=![];function _0x4af6(){const _0x11bd41=['count','에러가\x20발생했습니다.','💸\x20지원금\x20버튼을\x20클릭했어요.','ellipsis','1rem','저장\x20실패','description','classList','extra-info','페이지','delete','trim','614104bLzUoQ','님을\x20추방하시겠습니까?','close_position','noPartiesMsg','정말로\x20\x22','</strong>','div','assign','createPartyBtn','.crown-btn','leaderNickname','emit','block','length','join','scrollX','서버\x20오류가\x20발생했습니다.\x20잠시\x20후\x20다시\x20시도해주세요.','pamo.world.official@gmail.com','request_all_parties','right','display','search','user_restored','member-info','user_id_assigned','removeItem','2716264qstMIj','#jobCategorySelect\x20option[disabled]','open','true','\x5c$&','copyIcon','완료\x20취소','1.4','isInteger','[data-party-id=\x22','leave-button','partyId','getBoundingClientRect','socialCode','show','wss://pamo.world','requestedPositions','9999','지원💸','form-group','number','top','max','🪑\x20모집\x20중','928736EAIiRF','slice','success','has','bottom','levelInput','target','copyright','저장\x20완료','closed','create','현재\x20가입\x20가능한\x20파티가\x20없습니다.','amount-input','toggle','myInfo','error_message','addEventListener','6012MAJSNB','toast','option','.positions-list','한글은\x20입력할\x20수\x20없습니다.','506165vePCxU','3tQYGdB','button-container','style','toggleMyInfoBtn','leaderId','openPartyId','push','파티장\x20위치\x20선택','noParties','🔒\x20암호\x20있음','handle_join_request','.grant-btn','📌\x20','email','toLowerCase','나이트','footer','false','yellow-button\x20small-button','left','\x22]\x20.positions-list','remove','4765HwJRhH','매지션','size','tabindex','위자드(썬,콜)','from','kick_member','crown-btn','캐릭터\x20닉네임','jobDetail','\x27에게\x20귓속말을\x20보내도\x20됩니다.','aria-expanded','querySelector','input','다크나이트','saveMsg','text','.position-input','파티를\x20해체하시겠습니까?','connected','©\x202025\x20메랜파모','replace','DOMContentLoaded','소셜\x20코드(','myInfoCollapsed','kick\x20red-button\x20small-button','.toast-container','selected-crown','아크메이지(썬,콜)','\x22\x20모집을\x20완료하시겠습니까?','jobSelect','partyDescriptionView','disband_party','\x20🆔\x20','main-info','sort','2029077oBzHTD','ontouchstart','join_request_rejected','프리스트','button','change','darkMode','비밀\x20파티\x20암호를\x20입력하세요.','input-error','loadingOverlay','grant-btn','saveUserBtn','tabIndex','rgba(0,0,0,0.85)','filter','querySelectorAll','<strong>','암호가\x20틀렸습니다.','message','320px','create_party','금액\x20(만)','whiteSpace','#joinRequestsSection\x20h2','파티장은\x20탈퇴할\x20수\x20없습니다.\x20먼저\x20파티를\x20해체하세요.','className','header','<option\x20value=\x22\x22\x20selected\x20disabled>상세\x20직업</option>','addPositionBtn','크루세이더','dataset','selected','contact','createPrivate','flex','refresh_party_time','websocket','save_user_info_result','파티\x20이름과\x20위치를\x20모두\x20입력하고,\x20파티장의\x20위치를\x20지정해주세요.',']\x20파티에\x20가입되었습니다.\x0a메이플월드\x20소셜\x20메뉴에서\x0a','title','party_disbanded','appendChild','파티에서\x20탈퇴하시겠습니까?','update_connected_count','some','textOverflow','최소\x202개의\x20자리(위치)가\x20필요합니다.\x0d\x0a(파티장\x20자리와\x20최소\x201명의\x20파티원\x20자리)','메이지(불,독)','party_created','request_user','소셜\x20코드를\x20입력하고\x20저장하세요.','none','파티가\x20해체되었습니다.','join_requests_updated','jobCategory','kicked_from_party','pos','requests','innerHeight','width','파티\x20생성','\x22\x20모집\x20완료를\x20취소하시겠습니까?','disabled','getItem','type','ceil','185950eqFbjP','joinRequests','marginRight','overflow','🔒\x20','전체\x20파티\x20리스트','상세\x20직업','save_user_info','가입\x20요청\x20리스트','stopPropagation','job','textAlign','partyDescriptionContainer','green-button\x20small-button','every','ℹ️\x20','input,\x20button,\x20select,\x20textarea,\x20a[href]','setSelectionRange','smooth','partyPositions','contains','닉네임을\x20입력하세요.','시프마스터','floor','verify_party_password','focus','charCodeAt','펼치기','selected-grant','partySearchTerm','mouseleave','소셜\x20코드를\x20입력하세요.','히어로','✅\x20모집\x20완료','MyinfoContents','height','내\x20파티','red','party_description_updated','join-request-item','update_party_description','click','position-row','/timer','clear','keydown','test','split','connectedCount','\x20👑','6px','alignItems','header\x20h1','#myPartySection\x20h2','nicknameInput','onclick','partyName','request_join_party','메랜파모','userId','Contact\x20•','partyNameInput','clipboard','timer','editDescriptionBtn','fade-message','.amount-input','reject','메이지(썬,콜)','setAttribute','pos-','accept','party_details','scrollIntoView','amRequested','documentElement','get','marginLeft','scrollY','\x22에\x20있는\x20','getElementById','내\x20정보를\x20먼저\x20입력하고\x20저장하세요.','섀도어','어쌔신','add','extraInfo','leave_party','createPrivatePartyBtn','저격수','selectionStart','신청\x20중','👥\x20','직업을\x20선택하세요.','update_user_parties','가입\x20신청','positionInputsContainer','내\x20정보','contactText','body','🔓\x20암호\x20없음','setItem','break-word','사냥터\x20이름','find','파티에서\x20추방되었습니다.','map','darkModeToggle','위치\x20(좌1)','_blank','info-container','460lRJyqN','leaderSocialCode','members','key','클레릭','toString','placeholder','textContent','hidden','📢\x20[','6px\x2010px','#allPartiesSection\x20h2','span','connect','value','7hJLhNg','party-controls-container','innerHTML','positions','private-active','👤\x20Lv.','maxTouchPoints','isArray','desc_','hasPassword','data-party-id','dark-mode','startsWith','myParty','green','timerPageBtn','name','allParties','.position-row','visible','partyDescriptionEdit','Enter','지원금\x20받는\x20위치\x20선택','center','innerWidth','indexOf','includes','createElement','no_user_info','forEach','partyDescriptionInput','restore_user','children','#jobSelect\x20option[disabled]','용기사','requestTime','now','파티\x20탈퇴','Tab','joinRequestsHint','refresh-button','level','positions-list','get_party_details','nickname','팔라딘','createdAt','addPosition','enabled','position','소셜코드\x20(#ABCDE)','party-item','partySearchInput'];_0x4af6=function(){return _0x11bd41;};return _0x4af6();}const SOCIAL_CODE_PATTERN=/^#[A-Za-z0-9]{5}$/;let positions=[],leaderPositionIndex=null,positionCount=0x0;const maxPositions=0x8,pendingRequests=new Map();let currentTooltip=null,tooltipTarget=null;function showTooltip(_0x5bdbd2,_0x23790e){const _0x2d3c96=_0x218639;if(currentTooltip)currentTooltip[_0x2d3c96(0x14b)]();tooltipTarget=_0x23790e;const _0x1d5d04=document[_0x2d3c96(0x24b)](_0x2d3c96(0x277));_0x1d5d04[_0x2d3c96(0x228)]=_0x5bdbd2,Object[_0x2d3c96(0x278)](_0x1d5d04['style'],{'position':'absolute','background':_0x2d3c96(0x17d),'color':'#fff','padding':_0x2d3c96(0x22b),'borderRadius':_0x2d3c96(0x1e5),'zIndex':_0x2d3c96(0x29c),'lineHeight':_0x2d3c96(0x292),'maxWidth':_0x2d3c96(0x183),'whiteSpace':'normal','wordBreak':_0x2d3c96(0x218),'overflowWrap':'anywhere','boxSizing':'border-box'}),document[_0x2d3c96(0x215)]['appendChild'](_0x1d5d04);const _0x5aa2d9=_0x23790e[_0x2d3c96(0x297)](),_0x21515c=_0x1d5d04['getBoundingClientRect']();let _0x873314=window['scrollY']+_0x5aa2d9[_0x2d3c96(0x2a7)]+0x8,_0x32f56e=window['scrollX']+_0x5aa2d9[_0x2d3c96(0x149)];window[_0x2d3c96(0x1ab)]-_0x5aa2d9[_0x2d3c96(0x2a7)]<_0x21515c[_0x2d3c96(0x1d6)]+0x8&&(_0x873314=window['scrollY']+_0x5aa2d9[_0x2d3c96(0x2a0)]-_0x21515c['height']-0x8);const _0x368964=0x8,_0x3816a4=window[_0x2d3c96(0x280)]+_0x368964,_0x33bad9=window[_0x2d3c96(0x280)]+window[_0x2d3c96(0x248)]-_0x21515c[_0x2d3c96(0x1ac)]-_0x368964;if(_0x32f56e<_0x3816a4)_0x32f56e=_0x3816a4;if(_0x32f56e>_0x33bad9)_0x32f56e=_0x33bad9;const _0x57ca8a=window[_0x2d3c96(0x201)]+_0x368964,_0x2f2ebc=window[_0x2d3c96(0x201)]+window['innerHeight']-_0x21515c[_0x2d3c96(0x1d6)]-_0x368964;if(_0x873314<_0x57ca8a)_0x873314=_0x57ca8a;if(_0x873314>_0x2f2ebc)_0x873314=_0x2f2ebc;_0x1d5d04[_0x2d3c96(0x2bc)]['top']=_0x873314+'px',_0x1d5d04[_0x2d3c96(0x2bc)][_0x2d3c96(0x149)]=_0x32f56e+'px',currentTooltip=_0x1d5d04;}function bindTooltipEvents(_0x4c83d4,_0x45a6ab){const _0x1ecd1a=_0x218639,_0x2de64f=_0x1ecd1a(0x171)in window||navigator[_0x1ecd1a(0x236)]>0x0;_0x2de64f?_0x4c83d4[_0x1ecd1a(0x2b3)]('click',_0x7ea247=>{const _0x881ec7=_0x1ecd1a;_0x7ea247[_0x881ec7(0x1bc)](),showTooltip(_0x45a6ab,_0x4c83d4);}):(_0x4c83d4['addEventListener']('mouseenter',()=>showTooltip(_0x45a6ab,_0x4c83d4)),_0x4c83d4['addEventListener'](_0x1ecd1a(0x1d1),()=>{const _0x4961f4=_0x1ecd1a;currentTooltip&&(currentTooltip[_0x4961f4(0x14b)](),currentTooltip=null,tooltipTarget=null);}));}document[_0x218639(0x2b3)](_0x218639(0x1dc),_0x12dc7f=>{const _0x248e85=_0x218639;currentTooltip&&!currentTooltip[_0x248e85(0x1c7)](_0x12dc7f['target'])&&_0x12dc7f[_0x248e85(0x2a9)]!==tooltipTarget&&(currentTooltip[_0x248e85(0x14b)](),currentTooltip=null,tooltipTarget=null);});let svgmsgElement=null,svgmsgInputElement=null,messageTimeout=null;function showFadingMessage(_0x195924,_0x373bae,_0x3537a8=![],_0x25a944=null){const _0x361045=_0x218639;svgmsgElement&&(svgmsgElement[_0x361045(0x14b)](),svgmsgElement=null),svgmsgInputElement&&(svgmsgInputElement[_0x361045(0x26c)][_0x361045(0x14b)](_0x361045(0x178)),svgmsgInputElement=null),svgmsgElement=document['createElement'](_0x361045(0x277)),svgmsgElement['textContent']=_0x373bae,svgmsgElement[_0x361045(0x2bc)]['color']=_0x3537a8?'red':_0x361045(0x23e),svgmsgElement[_0x361045(0x26c)][_0x361045(0x207)](_0x361045(0x1f4)),_0x195924[_0x361045(0x19a)](svgmsgElement),_0x25a944&&_0x3537a8&&(svgmsgInputElement=_0x25a944,svgmsgInputElement[_0x361045(0x26c)][_0x361045(0x207)]('input-error')),messageTimeout&&(clearTimeout(messageTimeout),messageTimeout=null),messageTimeout=setTimeout(()=>{const _0x5c574d=_0x361045;if(svgmsgElement)svgmsgElement[_0x5c574d(0x14b)]();if(svgmsgInputElement)svgmsgInputElement[_0x5c574d(0x26c)]['remove'](_0x5c574d(0x178));svgmsgElement=null,svgmsgInputElement=null;},0xbb8);}function checkAllInputsFilled(){const _0x12614e=_0x218639,_0x40e847=[...document[_0x12614e(0x17f)](_0x12614e(0x15d))][_0x12614e(0x1c1)](_0x52d24b=>_0x52d24b[_0x12614e(0x22f)][_0x12614e(0x270)]()!==''),_0xadc9ee=partyNameInput[_0x12614e(0x22f)]['trim'](),_0x2b41ba=leaderPositionIndex!==null;createPartyBtn[_0x12614e(0x1af)]=!(_0x40e847&&_0xadc9ee&&_0x2b41ba);}function getChosungWithNumEng(_0x581d48){const _0x16a14f=_0x218639,_0x180c93=['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];return[..._0x581d48][_0x16a14f(0x21c)](_0x3a0fa5=>{const _0xefb85a=_0x16a14f,_0xfd4a4c=_0x3a0fa5[_0xefb85a(0x1cd)](0x0)-0xac00;if(_0xfd4a4c>=0x0&&_0xfd4a4c<=0x2ba3)return _0x180c93[Math[_0xefb85a(0x1ca)](_0xfd4a4c/0x24c)];if(/[0-9a-zA-Z]/[_0xefb85a(0x1e1)](_0x3a0fa5))return _0x3a0fa5[_0xefb85a(0x2c8)]();return'';})['join']('');}function isSequentialMatch(_0x403235,_0x329d61){const _0x37365a=_0x218639;let _0xb54bbe=0x0,_0xcde92c=-0x1;for(;_0xb54bbe<_0x329d61[_0x37365a(0x27e)];_0xb54bbe++){const _0x3ccd20=_0x403235['indexOf'](_0x329d61[_0xb54bbe],_0xcde92c+0x1);if(_0x3ccd20===-0x1)return![];_0xcde92c=_0x3ccd20;}return!![];}function filterItems(_0x36a719,_0x50c407){const _0x5b6dc9=_0x218639;if(!_0x50c407||_0x50c407[_0x5b6dc9(0x270)]()==='')return!![];const _0x4cdd9f=_0x36a719[_0x5b6dc9(0x2c8)](),_0x1f09a8=_0x50c407['toLowerCase']()[_0x5b6dc9(0x161)](/\s+/g,''),_0x2bef42=_0x1f09a8[_0x5b6dc9(0x1e2)]('')[_0x5b6dc9(0x17e)](_0x21ef5e=>_0x21ef5e['trim']()!==''),_0xc51102=_0x2bef42['some'](_0x20ed0d=>/^[ㄱ-ㅎ]$/['test'](_0x20ed0d)),_0x465e3e=_0x2bef42[_0x5b6dc9(0x19d)](_0xaa5d14=>/^[0-9]$/['test'](_0xaa5d14)),_0x24d99f=/[a-zA-Z가-힣]/[_0x5b6dc9(0x1e1)](_0x1f09a8),_0x308105=getChosungWithNumEng(_0x4cdd9f);if(_0xc51102&&_0x465e3e&&!_0x24d99f){const _0x5a401a=_0x2bef42[_0x5b6dc9(0x17e)](_0x4b6c70=>/^[ㄱ-ㅎ0-9]$/[_0x5b6dc9(0x1e1)](_0x4b6c70))[_0x5b6dc9(0x27f)]('');return isSequentialMatch(_0x308105,_0x5a401a);}if(_0xc51102&&!_0x465e3e&&!_0x24d99f){const _0x443169=_0x2bef42[_0x5b6dc9(0x27f)]('');return isSequentialMatch(_0x308105,_0x443169);}if(_0x465e3e&&!_0xc51102&&!_0x24d99f)return _0x2bef42[_0x5b6dc9(0x1c1)](_0x1f713e=>isSequentialMatch(_0x4cdd9f,_0x1f713e));return isSequentialMatch(_0x4cdd9f,_0x1f09a8);}function filterPartyItem(_0x2f55b5,_0x4d6bf7){const _0x44c06c=_0x218639;if(!_0x4d6bf7||_0x4d6bf7[_0x44c06c(0x270)]()==='')return!![];const _0xd45df9=_0x2f55b5[_0x44c06c(0x1eb)]||'',_0xd089dc=_0x2f55b5['description']||'',_0x3b5d5f=_0xd45df9+'\x20'+_0xd089dc;return filterItems(_0x3b5d5f,_0x4d6bf7);}socialCodeInput[_0x218639(0x2b3)](_0x218639(0x159),()=>{const _0x522e39=_0x218639;let _0x2397f0=socialCodeInput['value'];/[ㄱ-ㅎㅏ-ㅣ가-힣]/[_0x522e39(0x1e1)](_0x2397f0)&&showFadingMessage(saveMsg,_0x522e39(0x2b8),!![],socialCodeInput);if(_0x2397f0[_0x522e39(0x161)](/[^#]/g,'')===''&&_0x2397f0[_0x522e39(0x161)](/#/g,'')['trim']()===''){socialCodeInput[_0x522e39(0x22f)]='';return;}_0x2397f0=_0x2397f0['replace'](/#+/g,'#'),!_0x2397f0[_0x522e39(0x23c)]('#')&&(_0x2397f0='#'+_0x2397f0[_0x522e39(0x161)](/#/g,'')),_0x2397f0=_0x2397f0[0x0]+_0x2397f0['slice'](0x1)['replace'](/[^A-Za-z0-9]/g,''),_0x2397f0=_0x2397f0['slice'](0x0,0x6),socialCodeInput[_0x522e39(0x22f)]=_0x2397f0,socialCodeInput[_0x522e39(0x20c)]<=0x1&&socialCodeInput[_0x522e39(0x1c4)](0x1,0x1);}),addPositionBtn[_0x218639(0x2b3)](_0x218639(0x1dc),()=>{const _0x1b7924=_0x218639;if(positionCount<maxPositions){const _0x802741=createPositionRow();positionInputsContainer[_0x1b7924(0x19a)](_0x802741),positionCount++;}});function setLoading(_0x2f2932){const _0x50f487=_0x218639,_0x163d99=document[_0x50f487(0x203)]('mainUI'),_0xeede94=document[_0x50f487(0x203)](_0x50f487(0x179));if(!_0x163d99||!_0xeede94)return;_0x2f2932?(_0x163d99[_0x50f487(0x26c)][_0x50f487(0x14b)](_0x50f487(0x243)),_0xeede94[_0x50f487(0x2bc)]['display']='flex'):(_0xeede94[_0x50f487(0x2bc)]['display']=_0x50f487(0x1a4),_0x163d99['classList'][_0x50f487(0x207)](_0x50f487(0x243)));}function requestJoinParty(_0x5b0e01,_0x5d7233){const _0x1fb0d8=_0x218639;requestedPartyId=_0x5b0e01,!pendingRequests[_0x1fb0d8(0x2a6)](_0x5b0e01)&&pendingRequests['set'](_0x5b0e01,new Set()),pendingRequests[_0x1fb0d8(0x1ff)](_0x5b0e01)[_0x1fb0d8(0x207)](_0x5d7233['id']),socket[_0x1fb0d8(0x27c)](_0x1fb0d8(0x1ec),{'partyId':_0x5b0e01,'position':_0x5d7233});}function showToast(_0xc7de8f,_0x11b7ae=0x9c4){const _0x528424=_0x218639;let _0x3fb03a=document[_0x528424(0x158)](_0x528424(0x166));!_0x3fb03a&&(_0x3fb03a=document['createElement']('div'),_0x3fb03a['className']='toast-container',document['body']['appendChild'](_0x3fb03a));const _0x54d96e=document[_0x528424(0x24b)](_0x528424(0x277));_0x54d96e[_0x528424(0x189)]=_0x528424(0x2b5),_0x54d96e['textContent']=_0xc7de8f,_0x3fb03a[_0x528424(0x19a)](_0x54d96e),requestAnimationFrame(()=>_0x54d96e['classList'][_0x528424(0x207)](_0x528424(0x299))),setTimeout(()=>{const _0x5eec6c=_0x528424;_0x54d96e[_0x5eec6c(0x26c)][_0x5eec6c(0x14b)](_0x5eec6c(0x299)),setTimeout(()=>_0x54d96e[_0x5eec6c(0x14b)](),0x12c);},_0x11b7ae);}function createPositionRow(_0x216575=''){const _0x53f563=_0x218639,_0x93189f=document['createElement']('div');_0x93189f[_0x53f563(0x26c)]['add'](_0x53f563(0x29e),_0x53f563(0x1dd));const _0x423743=document[_0x53f563(0x24b)](_0x53f563(0x159));_0x423743[_0x53f563(0x1b1)]=_0x53f563(0x15c),_0x423743[_0x53f563(0x227)]=_0x53f563(0x21e),_0x423743[_0x53f563(0x26c)][_0x53f563(0x207)]('position-input'),_0x423743[_0x53f563(0x22f)]=_0x216575,_0x423743['addEventListener']('input',checkAllInputsFilled);const _0x2b5f88=document[_0x53f563(0x24b)]('button');_0x2b5f88['type']=_0x53f563(0x174),_0x2b5f88[_0x53f563(0x228)]='💸',_0x2b5f88[_0x53f563(0x189)]=_0x53f563(0x17a),_0x2b5f88[_0x53f563(0x198)]=_0x53f563(0x246),_0x2b5f88[_0x53f563(0x1f8)](_0x53f563(0x14f),'-1'),_0x2b5f88['addEventListener'](_0x53f563(0x1dc),()=>{const _0x2e8f86=_0x53f563;_0x2b5f88['classList']['contains']('selected-grant')?_0x2b5f88[_0x2e8f86(0x26c)][_0x2e8f86(0x14b)](_0x2e8f86(0x1cf)):(_0x2b5f88[_0x2e8f86(0x26c)][_0x2e8f86(0x207)](_0x2e8f86(0x1cf)),showToast(_0x2e8f86(0x267)));});const _0x36b356=document[_0x53f563(0x24b)](_0x53f563(0x159));_0x36b356[_0x53f563(0x1b1)]=_0x53f563(0x29f),_0x36b356[_0x53f563(0x227)]=_0x53f563(0x185),_0x36b356['classList']['add'](_0x53f563(0x2af)),_0x36b356[_0x53f563(0x2b3)](_0x53f563(0x159),function(){const _0x4afc02=_0x53f563;parseInt(_0x36b356[_0x4afc02(0x22f)])>0x270f&&(_0x36b356[_0x4afc02(0x22f)]=0x270f);}),_0x36b356['addEventListener'](_0x53f563(0x159),checkAllInputsFilled);const _0x3e35c0=document[_0x53f563(0x24b)](_0x53f563(0x174));_0x3e35c0[_0x53f563(0x1b1)]=_0x53f563(0x174),_0x3e35c0[_0x53f563(0x228)]='👑',_0x3e35c0[_0x53f563(0x189)]=_0x53f563(0x153),_0x3e35c0[_0x53f563(0x198)]=_0x53f563(0x2c1),_0x3e35c0[_0x53f563(0x1f8)](_0x53f563(0x14f),'-1'),_0x3e35c0[_0x53f563(0x1ea)]=()=>{const _0x33dd8b=_0x53f563,_0x3dfef4=document[_0x33dd8b(0x17f)](_0x33dd8b(0x27a));_0x3dfef4[_0x33dd8b(0x24d)](_0x2d6ca8=>{const _0x2a9eeb=_0x33dd8b;_0x2d6ca8['disabled']=![],_0x2d6ca8[_0x2a9eeb(0x26c)][_0x2a9eeb(0x14b)](_0x2a9eeb(0x167));}),_0x3e35c0[_0x33dd8b(0x1af)]=!![],_0x3e35c0[_0x33dd8b(0x26c)][_0x33dd8b(0x207)](_0x33dd8b(0x167)),leaderPositionIndex=[...positionInputsContainer['children']][_0x33dd8b(0x249)](_0x93189f),checkAllInputsFilled();};const _0x3630fc=document[_0x53f563(0x24b)](_0x53f563(0x174));return _0x3630fc[_0x53f563(0x1b1)]=_0x53f563(0x174),_0x3630fc['textContent']='➖',_0x3630fc['className']='remove-position-btn',_0x3630fc[_0x53f563(0x198)]='위치\x20삭제',_0x3630fc[_0x53f563(0x1f8)](_0x53f563(0x14f),'-1'),_0x3630fc[_0x53f563(0x1ea)]=()=>{const _0x5c7a66=_0x53f563;if(positionCount<=0x2){alert(_0x5c7a66(0x19f));return;}leaderPositionIndex===[...positionInputsContainer[_0x5c7a66(0x250)]][_0x5c7a66(0x249)](_0x93189f)&&(leaderPositionIndex=null),_0x93189f[_0x5c7a66(0x14b)](),positionCount--,checkAllInputsFilled();},_0x93189f['appendChild'](_0x423743),_0x93189f[_0x53f563(0x19a)](_0x2b5f88),_0x93189f['appendChild'](_0x36b356),_0x93189f[_0x53f563(0x19a)](_0x3e35c0),_0x93189f[_0x53f563(0x19a)](_0x3630fc),positionInputsContainer['appendChild'](_0x93189f),_0x93189f;}function updateMyPartyUI(_0x1e5515){const _0x2ff758=_0x218639;if(!_0x1e5515){myPartyId=null,amIPartyLeader=![],noPartyDiv['style']['display']=_0x2ff758(0x27d),partyInfoDiv[_0x2ff758(0x2bc)][_0x2ff758(0x285)]=_0x2ff758(0x1a4),joinRequestsSection['style'][_0x2ff758(0x285)]=_0x2ff758(0x1a4),partyMembersList[_0x2ff758(0x232)]='',partyNameTitle[_0x2ff758(0x228)]='';partyDescriptionEdit&&(partyDescriptionEdit[_0x2ff758(0x22f)]='');partyDescriptionView&&(partyDescriptionView[_0x2ff758(0x228)]='');partyControls[_0x2ff758(0x232)]='';return;}myPartyId=_0x1e5515[_0x2ff758(0x296)],amIPartyLeader=_0x1e5515[_0x2ff758(0x2be)]===myUserId,socialCodeInput&&(socialCodeInput[_0x2ff758(0x1af)]=amIPartyLeader),noPartyDiv[_0x2ff758(0x2bc)][_0x2ff758(0x285)]=_0x2ff758(0x1a4),partyInfoDiv['style'][_0x2ff758(0x285)]=_0x2ff758(0x27d),partyNameTitle[_0x2ff758(0x228)]=_0x1e5515[_0x2ff758(0x1eb)],partyMembersList[_0x2ff758(0x232)]='',amIPartyLeader?(partyDescriptionContainer&&(partyDescriptionContainer[_0x2ff758(0x2bc)][_0x2ff758(0x285)]='flex'),partyDescriptionEdit&&(partyDescriptionEdit[_0x2ff758(0x22f)]=_0x1e5515[_0x2ff758(0x26b)]||''),partyDescriptionView&&(partyDescriptionView[_0x2ff758(0x2bc)][_0x2ff758(0x285)]='none'),initEditDescriptionCooldown(_0x1e5515[_0x2ff758(0x296)],socket),renderPartyControls(_0x1e5515[_0x2ff758(0x296)])):(partyDescriptionContainer&&(partyDescriptionContainer[_0x2ff758(0x2bc)]['display']=_0x2ff758(0x1a4)),partyDescriptionView&&(partyDescriptionView['style'][_0x2ff758(0x285)]=_0x2ff758(0x27d),partyDescriptionView[_0x2ff758(0x228)]=_0x1e5515[_0x2ff758(0x26b)]?'📝\x20'+_0x1e5515['description']:''),renderLeaveButton(_0x1e5515['partyId'])),amIPartyLeader&&_0x1e5515[_0x2ff758(0x1b4)]?.[_0x2ff758(0x27e)]>0x0?(joinRequestsSection[_0x2ff758(0x2bc)]['display']='block',renderJoinRequests(_0x1e5515[_0x2ff758(0x1b4)],_0x1e5515['positions'])):(joinRequestsSection[_0x2ff758(0x2bc)][_0x2ff758(0x285)]=_0x2ff758(0x1a4),joinRequestsList[_0x2ff758(0x232)]=''),_0x1e5515[_0x2ff758(0x233)]&&_0x1e5515[_0x2ff758(0x223)]&&renderPartyPositions(_0x1e5515[_0x2ff758(0x233)],_0x1e5515[_0x2ff758(0x223)]);}function renderLeaveButton(_0x143ef6){const _0x392da5=_0x218639;partyControls['innerHTML']='';const _0x1a6411=document[_0x392da5(0x24b)]('div');_0x1a6411[_0x392da5(0x189)]=_0x392da5(0x231);const _0x43c369=document[_0x392da5(0x24b)](_0x392da5(0x174));_0x43c369[_0x392da5(0x26c)][_0x392da5(0x207)](_0x392da5(0x295)),_0x43c369[_0x392da5(0x228)]=_0x392da5(0x255),_0x43c369[_0x392da5(0x1ea)]=()=>{const _0x46000e=_0x392da5;if(amIPartyLeader){alert(_0x46000e(0x188));return;}confirm(_0x46000e(0x19b))&&socket[_0x46000e(0x27c)](_0x46000e(0x209),{'partyId':_0x143ef6});},_0x1a6411['appendChild'](_0x43c369),partyControls[_0x392da5(0x19a)](_0x1a6411);}function renderPartyControls(_0xe04007){const _0x368a64=_0x218639;partyControls[_0x368a64(0x232)]='';const _0x5a8271=document['createElement']('div');_0x5a8271[_0x368a64(0x189)]=_0x368a64(0x231);const _0x117a8f=document['createElement'](_0x368a64(0x174));_0x117a8f[_0x368a64(0x26c)][_0x368a64(0x207)](_0x368a64(0x258));const _0x417e9e='refresh_'+_0xe04007,_0x33c2c8=Number(localStorage[_0x368a64(0x1b0)](_0x417e9e)||0x0),_0x56acef=Date[_0x368a64(0x254)](),_0x26c2fd=0x3*0x3c*0x3e8;let _0x91459a;function _0x25561b(_0x29b896){const _0x43c36c=_0x368a64;_0x117a8f['disabled']=!![];if(_0x91459a)clearInterval(_0x91459a);const _0x229a0b=Date[_0x43c36c(0x254)]()+_0x29b896,_0x1fbbeb=Math[_0x43c36c(0x1b2)](_0x29b896/0x3e8);_0x117a8f[_0x43c36c(0x228)]='⏳\x20'+_0x1fbbeb+'초',_0x91459a=setInterval(()=>{const _0x3435e0=_0x43c36c,_0x149564=Math[_0x3435e0(0x1b2)]((_0x229a0b-Date[_0x3435e0(0x254)]())/0x3e8);_0x149564<=0x0?(_0x117a8f[_0x3435e0(0x1af)]=![],_0x117a8f['textContent']='파티\x20끌어올리기',clearInterval(_0x91459a)):_0x117a8f[_0x3435e0(0x228)]='⏳\x20'+_0x149564+'초';},0x3e8);}let _0x448037=Math['max'](0x0,_0x26c2fd-(_0x56acef-_0x33c2c8));_0x448037>0x0?(_0x117a8f[_0x368a64(0x1af)]=!![],_0x117a8f[_0x368a64(0x228)]='⏳\x20'+Math[_0x368a64(0x1b2)](_0x448037/0x3e8)+'초',_0x25561b(_0x448037)):(_0x117a8f[_0x368a64(0x1af)]=![],_0x117a8f[_0x368a64(0x228)]='파티\x20끌어올리기');_0x117a8f[_0x368a64(0x1ea)]=()=>{const _0x576cd1=_0x368a64;!socket[_0x576cd1(0x15f)]?pendingRefresh=!![]:socket[_0x576cd1(0x27c)](_0x576cd1(0x193)),localStorage[_0x576cd1(0x217)](_0x417e9e,Date[_0x576cd1(0x254)]()[_0x576cd1(0x226)]()),_0x25561b(_0x26c2fd);};const _0x81f3a3=document[_0x368a64(0x24b)](_0x368a64(0x174));_0x81f3a3[_0x368a64(0x26c)][_0x368a64(0x207)](_0x368a64(0x295)),_0x81f3a3[_0x368a64(0x228)]='파티\x20해체',_0x81f3a3[_0x368a64(0x1ea)]=()=>{const _0x52f36f=_0x368a64;confirm(_0x52f36f(0x15e))&&socket[_0x52f36f(0x27c)](_0x52f36f(0x16c),{'partyId':_0xe04007});},_0x5a8271[_0x368a64(0x19a)](_0x117a8f),_0x5a8271['appendChild'](_0x81f3a3),partyControls[_0x368a64(0x19a)](_0x5a8271);}function renderJoinRequests(_0x333edf,_0x19f033){const _0x58bc3e=_0x218639;joinRequestsList[_0x58bc3e(0x232)]='';if(!Array['isArray'](_0x333edf))return;const _0x2fe0e8=new Map();_0x333edf[_0x58bc3e(0x24d)](_0x4a6ccd=>{const _0x911979=_0x58bc3e;if(!_0x4a6ccd[_0x911979(0x261)]||!_0x4a6ccd[_0x911979(0x253)])return;const _0x4b3ff9=_0x4a6ccd[_0x911979(0x261)]?.['id'];if(!_0x4b3ff9)return;!_0x2fe0e8[_0x911979(0x2a6)](_0x4b3ff9)&&_0x2fe0e8['set'](_0x4b3ff9,[]),_0x2fe0e8[_0x911979(0x1ff)](_0x4b3ff9)[_0x911979(0x2c0)]({'userId':_0x4a6ccd['userId'],'nickname':_0x4a6ccd['nickname'],'level':_0x4a6ccd[_0x911979(0x259)],'job':_0x4a6ccd[_0x911979(0x1bd)],'socialCode':_0x4a6ccd[_0x911979(0x298)],'extraInfo':_0x4a6ccd[_0x911979(0x208)]||'','requestTime':_0x4a6ccd['requestTime']});}),_0x19f033['forEach'](_0x43e320=>{const _0xdecb82=_0x58bc3e,_0x4c2275=_0x43e320['id'],_0x49740a=_0x2fe0e8[_0xdecb82(0x1ff)](_0x4c2275);if(!_0x49740a||_0x49740a[_0xdecb82(0x27e)]===0x0)return;const {name:_0x1e15ff,amount:_0x304aa7,isGrant:_0x279b6c}=_0x43e320,_0x58e21c=_0x304aa7?'\x20('+_0x304aa7+'만\x20'+(_0x279b6c?_0xdecb82(0x29d):'지참')+')':'',_0x3edc19=document[_0xdecb82(0x24b)]('h3');_0x3edc19[_0xdecb82(0x228)]='📍\x20'+_0x1e15ff+_0x58e21c,joinRequestsList[_0xdecb82(0x19a)](_0x3edc19),_0x49740a[_0xdecb82(0x16f)]((_0x40b3d8,_0x34e5e4)=>new Date(_0x40b3d8[_0xdecb82(0x253)])-new Date(_0x34e5e4[_0xdecb82(0x253)])),_0x49740a[_0xdecb82(0x24d)](_0x3334c0=>{const _0x954cd8=_0xdecb82,_0x35c37d=_0x3334c0[_0x954cd8(0x298)]?_0x3334c0[_0x954cd8(0x25c)]+'\x20('+_0x3334c0[_0x954cd8(0x298)]+')':_0x3334c0['nickname'],_0x1b4202=document[_0x954cd8(0x24b)]('li');_0x1b4202[_0x954cd8(0x26c)]['add'](_0x954cd8(0x1da));const _0x46cb77=document[_0x954cd8(0x24b)](_0x954cd8(0x277));_0x46cb77[_0x954cd8(0x26c)][_0x954cd8(0x207)](_0x954cd8(0x220));const _0x4fc343=document[_0x954cd8(0x24b)](_0x954cd8(0x277));_0x4fc343[_0x954cd8(0x26c)][_0x954cd8(0x207)]('main-info'),_0x4fc343[_0x954cd8(0x228)]=_0x954cd8(0x235)+_0x3334c0[_0x954cd8(0x259)]+'\x20'+_0x3334c0['job']+_0x954cd8(0x16d)+_0x35c37d,_0x46cb77[_0x954cd8(0x19a)](_0x4fc343);if(_0x3334c0[_0x954cd8(0x208)]){const _0x725daa=document[_0x954cd8(0x24b)](_0x954cd8(0x277));_0x725daa[_0x954cd8(0x26c)][_0x954cd8(0x207)](_0x954cd8(0x26d)),_0x725daa[_0x954cd8(0x228)]='ℹ️\x20'+_0x3334c0[_0x954cd8(0x208)],bindTooltipEvents(_0x725daa,_0x725daa[_0x954cd8(0x228)]),_0x46cb77[_0x954cd8(0x19a)](_0x725daa);}const _0x1055cd=document[_0x954cd8(0x24b)](_0x954cd8(0x277));_0x1055cd[_0x954cd8(0x26c)][_0x954cd8(0x207)](_0x954cd8(0x2bb));const _0x2e4a36=document[_0x954cd8(0x24b)](_0x954cd8(0x174));_0x2e4a36[_0x954cd8(0x228)]='수락',_0x2e4a36['classList'][_0x954cd8(0x207)](_0x954cd8(0x1fa)),_0x2e4a36[_0x954cd8(0x1ea)]=()=>{const _0x399de5=_0x954cd8;socket[_0x399de5(0x27c)](_0x399de5(0x2c4),{'partyId':myPartyId,'userId':_0x3334c0[_0x399de5(0x1ee)],'position':{'id':_0x43e320['id']},'accept':!![]});};const _0x2131bd=document[_0x954cd8(0x24b)](_0x954cd8(0x174));_0x2131bd[_0x954cd8(0x228)]='거절',_0x2131bd[_0x954cd8(0x26c)][_0x954cd8(0x207)](_0x954cd8(0x1f6)),_0x2131bd[_0x954cd8(0x1ea)]=()=>{const _0x493f69=_0x954cd8;socket[_0x493f69(0x27c)](_0x493f69(0x2c4),{'partyId':myPartyId,'userId':_0x3334c0['userId'],'position':{'id':_0x43e320['id']},'accept':![]});},_0x1055cd[_0x954cd8(0x19a)](_0x2e4a36),_0x1055cd[_0x954cd8(0x19a)](_0x2131bd),_0x1b4202[_0x954cd8(0x19a)](_0x46cb77),_0x1b4202[_0x954cd8(0x19a)](_0x1055cd),joinRequestsList[_0x954cd8(0x19a)](_0x1b4202);});});}function renderPartyPositions(_0x11fd9e,_0x1f2d78){const _0x459306=_0x218639;partyMembersList[_0x459306(0x232)]='',_0x11fd9e['forEach'](_0x227876=>{const _0x126207=_0x459306,_0xb404cc=document[_0x126207(0x24b)]('li');_0xb404cc[_0x126207(0x189)]='party-member-info';const {name:_0x4e4335,amount:_0x5c7b6b,isGrant:_0x38cdaa}=_0x227876,_0xaa9c60=_0x5c7b6b?'\x20('+_0x5c7b6b+'만\x20'+(_0x38cdaa?_0x126207(0x29d):'지참')+')':'',_0x539e44=_0x1f2d78[_0x126207(0x21a)](_0x2dbbf3=>_0x2dbbf3[_0x126207(0x261)]?.['id']===_0x227876['id']),_0xafe5a9=document[_0x126207(0x24b)](_0x126207(0x277));_0xafe5a9[_0x126207(0x26c)][_0x126207(0x207)](_0x126207(0x1a9)),_0xafe5a9[_0x126207(0x228)]=_0x126207(0x2c6)+_0x4e4335+_0xaa9c60;const _0x386765=document['createElement']('div');_0x386765[_0x126207(0x26c)][_0x126207(0x207)](_0x126207(0x220));const _0x563c3a=document[_0x126207(0x24b)](_0x126207(0x277));_0x563c3a[_0x126207(0x26c)][_0x126207(0x207)](_0x126207(0x16e));if(_0x539e44){const _0x302bda=_0x539e44[_0x126207(0x298)]?_0x539e44[_0x126207(0x25c)]+'\x20('+_0x539e44[_0x126207(0x298)]+')':_0x539e44[_0x126207(0x25c)];_0x563c3a[_0x126207(0x228)]=_0x126207(0x235)+_0x539e44['level']+'\x20'+_0x539e44[_0x126207(0x1bd)]+_0x126207(0x16d)+_0x302bda,_0x386765[_0x126207(0x19a)](_0x563c3a);if(_0x539e44[_0x126207(0x208)]){const _0x1fbfa2=document[_0x126207(0x24b)]('div');_0x1fbfa2[_0x126207(0x26c)][_0x126207(0x207)](_0x126207(0x26d)),_0x1fbfa2[_0x126207(0x228)]=_0x126207(0x1c2)+_0x539e44[_0x126207(0x208)],bindTooltipEvents(_0x1fbfa2,_0x539e44['extraInfo']),_0x386765[_0x126207(0x19a)](_0x1fbfa2);}}else _0x227876[_0x126207(0x2ac)]?_0x563c3a['textContent']='✅\x20모집\x20완료':_0x563c3a['textContent']='🪑\x20모집\x20중',_0x386765['appendChild'](_0x563c3a);const _0x1d8c9d=document[_0x126207(0x24b)]('div');if(amIPartyLeader){if(_0x539e44&&_0x539e44[_0x126207(0x1ee)]!==myUserId){const _0x44e244=document[_0x126207(0x24b)](_0x126207(0x174));_0x44e244[_0x126207(0x228)]='추방',_0x44e244[_0x126207(0x189)]=_0x126207(0x165),_0x44e244['onclick']=()=>{const _0x262c48=_0x126207;confirm(_0x262c48(0x275)+_0x227876[_0x262c48(0x240)]+_0x262c48(0x202)+_0x539e44[_0x262c48(0x25c)]+_0x262c48(0x272))&&socket[_0x262c48(0x27c)](_0x262c48(0x152),{'partyId':myPartyId,'userId':_0x539e44['userId']});},_0x1d8c9d[_0x126207(0x19a)](_0x44e244);}else{if(!_0x539e44&&_0x227876[_0x126207(0x2ac)]){const _0x1c5511=document['createElement'](_0x126207(0x174));_0x1c5511[_0x126207(0x228)]=_0x126207(0x291),_0x1c5511['className']=_0x126207(0x2cc),_0x1c5511['onclick']=()=>{const _0x4709b4=_0x126207;confirm('\x22'+_0x227876[_0x4709b4(0x240)]+_0x4709b4(0x1ae))&&socket[_0x4709b4(0x27c)]('reopen_position',{'partyId':myPartyId,'positionId':_0x227876['id']});},_0x1d8c9d[_0x126207(0x19a)](_0x1c5511);}else{if(!_0x539e44&&!_0x227876[_0x126207(0x2ac)]){const _0x512d92=document['createElement'](_0x126207(0x174));_0x512d92[_0x126207(0x228)]='모집\x20완료',_0x512d92[_0x126207(0x189)]=_0x126207(0x1c0),_0x512d92[_0x126207(0x1ea)]=()=>{const _0x28c027=_0x126207;confirm('\x22'+_0x227876[_0x28c027(0x240)]+_0x28c027(0x169))&&socket[_0x28c027(0x27c)](_0x28c027(0x273),{'partyId':myPartyId,'positionId':_0x227876['id']});},_0x1d8c9d[_0x126207(0x19a)](_0x512d92);}}}}_0xb404cc[_0x126207(0x19a)](_0xafe5a9),_0xb404cc[_0x126207(0x19a)](_0x386765),_0xb404cc['appendChild'](_0x1d8c9d),partyMembersList[_0x126207(0x19a)](_0xb404cc);});}function renderAllParties(_0x1cf6dc){const _0x3801cf=_0x218639;allPartiesList[_0x3801cf(0x232)]='';const _0x43593a=document[_0x3801cf(0x203)](_0x3801cf(0x274)),_0x2815e5=partySearchInput?.[_0x3801cf(0x22f)][_0x3801cf(0x270)]()[_0x3801cf(0x2c8)]();localStorage[_0x3801cf(0x217)](_0x3801cf(0x1d0),_0x2815e5);const _0xa0a2ff=_0x1cf6dc['filter'](_0x2a0f7e=>filterPartyItem(_0x2a0f7e,_0x2815e5));if(_0xa0a2ff[_0x3801cf(0x27e)]===0x0){_0x43593a['textContent']=_0x3801cf(0x2ae),_0x43593a[_0x3801cf(0x2bc)][_0x3801cf(0x285)]=_0x3801cf(0x27d),allPartiesList[_0x3801cf(0x2bc)]['display']=_0x3801cf(0x1a4);return;}else _0x43593a['textContent']='',_0x43593a['style'][_0x3801cf(0x285)]=_0x3801cf(0x1a4),allPartiesList[_0x3801cf(0x2bc)][_0x3801cf(0x285)]=_0x3801cf(0x27d);_0xa0a2ff['sort']((_0x236c24,_0xd5a24f)=>{const _0x4502de=_0x3801cf,_0x8b5d79=_0x236c24[_0x4502de(0x233)]['filter'](_0x37b5c3=>_0x37b5c3['closed'])[_0x4502de(0x27e)],_0x4138f5=_0x236c24['members']['length']+_0x8b5d79,_0x48b159=_0x4138f5>=_0x236c24[_0x4502de(0x233)][_0x4502de(0x27e)]?0x1:0x0,_0x2b9604=_0xd5a24f[_0x4502de(0x233)]['filter'](_0x532e9f=>_0x532e9f[_0x4502de(0x2ac)])[_0x4502de(0x27e)],_0x3c9418=_0xd5a24f['members']['length']+_0x2b9604,_0x3910e3=_0x3c9418>=_0xd5a24f[_0x4502de(0x233)][_0x4502de(0x27e)]?0x1:0x0;if(_0x48b159!==_0x3910e3)return _0x48b159-_0x3910e3;return _0xd5a24f[_0x4502de(0x25e)]-_0x236c24['createdAt'];}),_0xa0a2ff[_0x3801cf(0x24d)](_0x471c55=>{const _0x2edde8=_0x3801cf,_0x285d89=document[_0x2edde8(0x24b)](_0x2edde8(0x277));_0x285d89['classList']['add']('party-item-container'),_0x285d89[_0x2edde8(0x1f8)](_0x2edde8(0x23a),_0x471c55[_0x2edde8(0x296)]);const _0x4240d4=document[_0x2edde8(0x24b)]('li');_0x4240d4[_0x2edde8(0x26c)]['add'](_0x2edde8(0x263));const _0x3294d9=_0x471c55[_0x2edde8(0x233)][_0x2edde8(0x17e)](_0x492d8c=>_0x492d8c['closed'])[_0x2edde8(0x27e)],_0x2ac805=_0x471c55['members'][_0x2edde8(0x27e)]+_0x3294d9,_0x3c55e2=_0x471c55[_0x2edde8(0x233)][_0x2edde8(0x27e)],_0x1d9cf6=document['createElement']('span'),_0x42e95d=_0x471c55[_0x2edde8(0x26b)]?.[_0x2edde8(0x270)](),_0xb5a493=_0x471c55['hasPassword']?_0x2edde8(0x1b7):'';_0x1d9cf6[_0x2edde8(0x228)]=_0x42e95d?''+_0xb5a493+_0x471c55[_0x2edde8(0x1eb)]+'\x20-\x20'+_0x42e95d:''+_0xb5a493+_0x471c55[_0x2edde8(0x1eb)],_0x1d9cf6[_0x2edde8(0x2bc)][_0x2edde8(0x192)]='1',_0x1d9cf6[_0x2edde8(0x2bc)][_0x2edde8(0x186)]='nowrap',_0x1d9cf6[_0x2edde8(0x2bc)][_0x2edde8(0x1b6)]=_0x2edde8(0x229),_0x1d9cf6[_0x2edde8(0x2bc)][_0x2edde8(0x19e)]=_0x2edde8(0x268),bindTooltipEvents(_0x1d9cf6,_0x1d9cf6[_0x2edde8(0x228)]);const _0x530b4b=document[_0x2edde8(0x24b)](_0x2edde8(0x22d));_0x530b4b[_0x2edde8(0x228)]=_0x2edde8(0x20e)+_0x2ac805+'/'+_0x3c55e2;_0x2ac805>=_0x3c55e2&&(_0x530b4b[_0x2edde8(0x2bc)]['color']=_0x2edde8(0x1d8));_0x530b4b[_0x2edde8(0x2bc)][_0x2edde8(0x1be)]=_0x2edde8(0x284),_0x530b4b[_0x2edde8(0x2bc)]['whiteSpace']='nowrap',_0x530b4b[_0x2edde8(0x2bc)][_0x2edde8(0x200)]=_0x2edde8(0x269),_0x530b4b[_0x2edde8(0x2bc)][_0x2edde8(0x1b5)]='10px',_0x4240d4[_0x2edde8(0x2bc)][_0x2edde8(0x285)]='flex',_0x4240d4[_0x2edde8(0x2bc)]['justifyContent']='space-between',_0x4240d4['style'][_0x2edde8(0x1e6)]=_0x2edde8(0x247),_0x4240d4[_0x2edde8(0x19a)](_0x1d9cf6),_0x4240d4[_0x2edde8(0x19a)](_0x530b4b);const _0x1a954f=document[_0x2edde8(0x24b)](_0x2edde8(0x174));_0x1a954f[_0x2edde8(0x228)]='상세보기',_0x1a954f[_0x2edde8(0x26c)][_0x2edde8(0x207)]('details-btn'),_0x1a954f[_0x2edde8(0x1ea)]=()=>{togglePartyDetails(_0x471c55);};const _0x2288e6=document['createElement'](_0x2edde8(0x277));_0x2288e6['style'][_0x2edde8(0x1be)]='right',_0x2288e6[_0x2edde8(0x19a)](_0x1a954f),_0x4240d4[_0x2edde8(0x19a)](_0x2288e6);const _0x2f80d2=document['createElement']('ul');_0x2f80d2[_0x2edde8(0x26c)][_0x2edde8(0x207)](_0x2edde8(0x25a)),_0x2f80d2['style'][_0x2edde8(0x285)]='none',_0x285d89[_0x2edde8(0x19a)](_0x4240d4),_0x285d89[_0x2edde8(0x19a)](_0x2f80d2),allPartiesList[_0x2edde8(0x19a)](_0x285d89);});}async function verifyPartyPassword(_0x30886c,_0x1bad5c){return new Promise(_0x3e5703=>{const _0x309d8f=_0x259e;socket[_0x309d8f(0x27c)](_0x309d8f(0x1cb),{'partyId':_0x30886c,'password':_0x1bad5c},_0xd2707=>{_0x3e5703(_0xd2707);});});}async function togglePartyDetails(_0x508e27){const _0x4b14eb=_0x218639,_0x969775=localStorage[_0x4b14eb(0x1b0)]('openPartyId');if(_0x969775===_0x508e27['partyId']){localStorage[_0x4b14eb(0x28a)](_0x4b14eb(0x2bf));const _0x2e2810=document[_0x4b14eb(0x158)](_0x4b14eb(0x294)+_0x508e27['partyId']+_0x4b14eb(0x14a));if(_0x2e2810)_0x2e2810['style']['display']=_0x4b14eb(0x1a4);return;}document[_0x4b14eb(0x17f)]('.positions-list')['forEach'](_0x3467c1=>_0x3467c1[_0x4b14eb(0x2bc)][_0x4b14eb(0x285)]=_0x4b14eb(0x1a4));if(_0x508e27[_0x4b14eb(0x239)]){const _0x1ec890=prompt('비밀\x20파티입니다.\x0d\x0a암호를\x20입력하세요:');if(_0x1ec890===null)return;try{const _0x527339=await verifyPartyPassword(_0x508e27['partyId'],_0x1ec890);if(!_0x527339['success']){alert(_0x527339[_0x4b14eb(0x182)]||_0x4b14eb(0x181));return;}}catch{alert(_0x4b14eb(0x281));return;}}localStorage[_0x4b14eb(0x217)](_0x4b14eb(0x2bf),_0x508e27[_0x4b14eb(0x296)]),socket['emit']('get_party_details',{'partyId':_0x508e27['partyId']});}function resetPartyCreationForm(){const _0x20c782=_0x218639;if(!addPositionBtn)return;positionInputsContainer[_0x20c782(0x232)]='',positionCount=0x0,leaderPositionIndex=null,positions=[];for(let _0x3bb937=0x0;_0x3bb937<0x2;_0x3bb937++){addPositionBtn[_0x20c782(0x1dc)]();}createPartyBtn['disabled']=!![];}function resetPartyCreationFormAll(){const _0xffa9be=_0x218639;resetPartyCreationForm(),partyNameInput&&(partyNameInput[_0xffa9be(0x22f)]='',partyNameInput[_0xffa9be(0x18e)]['selected']=_0xffa9be(0x2cb));}function initEditDescriptionCooldown(_0x410b8a,_0x1f9c08){const _0x19696e=_0x218639;if(!editDescriptionBtn||!partyDescriptionEdit)return;const _0x23fb52=_0x19696e(0x238)+_0x410b8a,_0x2375cf=0x3c*0x3e8;let _0x1be634;function _0x38e5f9(_0x12b603){const _0x2a6938=_0x19696e,_0x168fae=Date[_0x2a6938(0x254)]()+_0x12b603;localStorage[_0x2a6938(0x217)](_0x23fb52,_0x168fae[_0x2a6938(0x226)]()),editDescriptionBtn[_0x2a6938(0x1af)]=!![],partyDescriptionEdit['disabled']=!![];const _0x3206d5=Math['ceil'](_0x12b603/0x3e8);editDescriptionBtn[_0x2a6938(0x228)]='⏳\x20'+_0x3206d5+'초';if(_0x1be634)clearInterval(_0x1be634);_0x1be634=setInterval(()=>{const _0x16df0a=_0x2a6938,_0x5f3f84=Math[_0x16df0a(0x1b2)]((_0x168fae-Date[_0x16df0a(0x254)]())/0x3e8);_0x5f3f84<=0x0?(clearInterval(_0x1be634),_0x1be634=null,editDescriptionBtn['disabled']=![],partyDescriptionEdit['disabled']=![],editDescriptionBtn[_0x16df0a(0x228)]='수정'):editDescriptionBtn['textContent']='⏳\x20'+_0x5f3f84+'초';},0x3e8);}const _0x5d51f5=Number(localStorage[_0x19696e(0x1b0)](_0x23fb52)||0x0),_0x44cbc2=Date['now'](),_0x3208a=Math[_0x19696e(0x2a1)](0x0,_0x5d51f5-_0x44cbc2);_0x3208a>0x0?_0x38e5f9(_0x3208a):(editDescriptionBtn[_0x19696e(0x1af)]=![],partyDescriptionEdit[_0x19696e(0x1af)]=![],editDescriptionBtn[_0x19696e(0x228)]='수정'),editDescriptionBtn[_0x19696e(0x2b3)]('click',()=>{const _0x27ddbe=_0x19696e,_0x19f987=partyDescriptionEdit[_0x27ddbe(0x22f)][_0x27ddbe(0x270)]();if(!_0x19f987)return;_0x38e5f9(_0x2375cf),_0x1f9c08[_0x27ddbe(0x27c)](_0x27ddbe(0x1db),{'partyId':_0x410b8a,'description':_0x19f987});});}function initializeSocketEvents(){const _0x2bb05c=_0x218639;socket['on'](_0x2bb05c(0x22e),()=>{const _0x3f1866=_0x2bb05c;myUserId=localStorage[_0x3f1866(0x1b0)](_0x3f1866(0x1ee));myUserId?socket[_0x3f1866(0x27c)](_0x3f1866(0x24f),{'userId':myUserId}):socket[_0x3f1866(0x27c)](_0x3f1866(0x1a2));pendingRefresh&&(socket[_0x3f1866(0x27c)](_0x3f1866(0x193)),pendingRefresh=![]);const _0x411523=localStorage[_0x3f1866(0x1b0)]('nickname'),_0x235e4c=localStorage[_0x3f1866(0x1b0)]('level'),_0xf4818a=localStorage['getItem']('jobCategory'),_0x4636db=localStorage[_0x3f1866(0x1b0)](_0x3f1866(0x1bd)),_0xd2d616=localStorage[_0x3f1866(0x1b0)](_0x3f1866(0x298)),_0x440bc9=localStorage[_0x3f1866(0x1b0)]('extraInfo'),_0x22c50e=localStorage[_0x3f1866(0x1b0)](_0x3f1866(0x1d0));if(_0x411523)nicknameInput[_0x3f1866(0x22f)]=_0x411523;if(_0x235e4c)levelInput['value']=_0x235e4c;if(_0xf4818a)jobCategorySelect[_0x3f1866(0x22f)]=_0xf4818a;updateJobOptionsRestore(_0xf4818a,_0x4636db);if(_0xd2d616)socialCodeInput[_0x3f1866(0x22f)]=_0xd2d616;if(_0x440bc9)extraInfoInput[_0x3f1866(0x22f)]=_0x440bc9;_0x22c50e&&partySearchInput&&(partySearchInput['value']=_0x22c50e),partySearchInput&&partySearchInput[_0x3f1866(0x2b3)]('input',()=>{const _0x19c12a=_0x3f1866;socket['emit'](_0x19c12a(0x283));});}),socket['on'](_0x2bb05c(0x289),_0x279fd2=>{const _0x2b5d8f=_0x2bb05c;myUserId=_0x279fd2[_0x2b5d8f(0x1ee)],localStorage[_0x2b5d8f(0x217)](_0x2b5d8f(0x1ee),myUserId),socket['emit'](_0x2b5d8f(0x283));}),socket['on'](_0x2bb05c(0x287),_0xf48b79=>{const _0x365e65=_0x2bb05c;myUserId=_0xf48b79['userId'],localStorage[_0x365e65(0x217)]('userId',myUserId),myPartyId=null,amIPartyLeader=![],socialCodeInput['disabled']=![],updateMyPartyUI(null),resetPartyCreationFormAll(),socket[_0x365e65(0x27c)]('request_all_parties');});}function initializeAwesomplete(){const _0x4b028f=_0x218639,_0x56048a=document[_0x4b028f(0x203)](_0x4b028f(0x1f0));if(_0x56048a){const _0x3f1508=rawMapList;new Awesomplete(_0x56048a,{'list':_0x3f1508,'minChars':0x1,'maxItems':0xa,'autoFirst':!![],'filter':function(_0x797b78,_0x8ffa43){return filterItems(_0x797b78,_0x8ffa43);},'item':function(_0x29b0d1,_0x25df27){const _0x390f64=_0x4b028f,_0x8461bd=_0x29b0d1,_0x1d4801=_0x25df27[_0x390f64(0x161)](/[.*+?^${}()|[\]\\]/g,_0x390f64(0x28f)),_0x267b13=new RegExp(_0x1d4801,'gi'),_0x4d51be=_0x8461bd[_0x390f64(0x161)](_0x267b13,_0xe387c2=>_0x390f64(0x180)+_0xe387c2+_0x390f64(0x276)),_0x433f66=document[_0x390f64(0x24b)]('li');return _0x433f66['innerHTML']=_0x4d51be,_0x433f66;},'replace':function(_0x418d32){const _0x558e4c=_0x4b028f;this[_0x558e4c(0x159)][_0x558e4c(0x22f)]=_0x418d32,this['input'][_0x558e4c(0x18e)][_0x558e4c(0x18f)]=_0x558e4c(0x28e);if(typeof user!=='undefined'&&user[_0x558e4c(0x296)])return;if(_0x418d32[_0x558e4c(0x270)]()===''){resetPartyCreationFormAll();return;}if(locationTemplates[_0x418d32]){positionInputsContainer[_0x558e4c(0x232)]='',positionCount=0x0,leaderPositionIndex=null,locationTemplates[_0x418d32][_0x558e4c(0x24d)](_0x3f4898=>{const _0x31ec51=_0x558e4c,_0x19820a=createPositionRow(_0x3f4898);positionInputsContainer[_0x31ec51(0x19a)](_0x19820a),positionCount++;});while(positionCount<0x2){const _0x1d8091=createPositionRow('');positionInputsContainer[_0x558e4c(0x19a)](_0x1d8091),positionCount++;}checkAllInputsFilled();return;}else resetPartyCreationForm();}}),_0x56048a[_0x4b028f(0x2b3)](_0x4b028f(0x159),function(){const _0x5271bc=_0x4b028f,_0x2e9b07=_0x3f1508[_0x5271bc(0x24a)](_0x56048a['value']['trim']());!_0x2e9b07&&(this['dataset']['selected']=_0x5271bc(0x2cb));}),_0x56048a['addEventListener']('blur',function(){const _0x2f27e2=_0x4b028f;this[_0x2f27e2(0x18e)][_0x2f27e2(0x18f)]!==_0x2f27e2(0x28e)&&(this[_0x2f27e2(0x22f)]='',this[_0x2f27e2(0x18e)]['selected']=_0x2f27e2(0x2cb));}),_0x56048a[_0x4b028f(0x2b3)](_0x4b028f(0x1e0),function(_0x1b01df){const _0x1f25bb=_0x4b028f;if(_0x1b01df[_0x1f25bb(0x224)]===_0x1f25bb(0x256)){_0x1b01df['preventDefault']();const _0x5e3118=new KeyboardEvent(_0x1f25bb(0x1e0),{'key':_0x1f25bb(0x245),'keyCode':0xd,'code':_0x1f25bb(0x245),'which':0xd,'bubbles':!![],'cancelable':!![]});_0x56048a['dispatchEvent'](_0x5e3118);const _0x7b71f0=_0x102e35(_0x56048a);_0x7b71f0&&_0x7b71f0['focus']();}});function _0x102e35(_0x5cda20){const _0x39e328=_0x4b028f,_0xb97ae6=Array[_0x39e328(0x151)](document[_0x39e328(0x17f)](_0x39e328(0x1c3)))[_0x39e328(0x17e)](_0x4fdea7=>!_0x4fdea7['disabled']&&_0x4fdea7[_0x39e328(0x17c)]>=0x0),_0x54362e=_0xb97ae6[_0x39e328(0x249)](_0x5cda20);return _0xb97ae6[_0x54362e+0x1]||null;}}}socket['on'](_0x218639(0x1d9),_0x126e8c=>{const _0x508ef2=_0x218639;_0x126e8c['partyId']===myPartyId&&(partyDescriptionView['textContent']=_0x126e8c[_0x508ef2(0x26b)]?'📝\x20'+_0x126e8c[_0x508ef2(0x26b)]:'',partyDescriptionEdit[_0x508ef2(0x2bc)][_0x508ef2(0x285)]===_0x508ef2(0x27d)&&(partyDescriptionEdit[_0x508ef2(0x22f)]=_0x126e8c[_0x508ef2(0x26b)]||''));}),saveUserBtn[_0x218639(0x1ea)]=()=>{const _0x2b7d64=_0x218639;let _0x104444=nicknameInput[_0x2b7d64(0x22f)]['trim'](),_0x5f2a68=Number(levelInput[_0x2b7d64(0x22f)]),_0x5abf5e=jobCategorySelect[_0x2b7d64(0x22f)],_0x1a2c73=jobSelect[_0x2b7d64(0x22f)],_0x126581=socialCodeInput?.['value'][_0x2b7d64(0x270)](),_0xf47384=extraInfoInput[_0x2b7d64(0x22f)][_0x2b7d64(0x270)](),_0x564540=![];if(!_0x104444)showFadingMessage(saveMsg,_0x2b7d64(0x1c8),!![],nicknameInput),_0x564540=!![];else{if(!Number[_0x2b7d64(0x293)](_0x5f2a68)||_0x5f2a68<0x1||_0x5f2a68>0xc8)showFadingMessage(saveMsg,'레벨을\x20입력하세요.',!![],levelInput),_0x564540=!![];else{if(!_0x1a2c73)showFadingMessage(saveMsg,_0x2b7d64(0x20f),!![],jobSelect),_0x564540=!![];else _0x126581&&!SOCIAL_CODE_PATTERN['test'](_0x126581)&&(showFadingMessage(saveMsg,_0x2b7d64(0x1d2),!![],socialCodeInput),_0x564540=!![]);}}if(_0x564540)return;const _0x3730fa=0x10,_0x52e47a=Array[_0x2b7d64(0x151)](_0x104444);_0x52e47a[_0x2b7d64(0x27e)]>_0x3730fa&&(_0x104444=_0x52e47a['slice'](0x0,_0x3730fa)[_0x2b7d64(0x27f)](''),nicknameInput[_0x2b7d64(0x22f)]=_0x104444);const _0x472bff=0x32,_0x1ce3fe=Array['from'](_0xf47384);_0x1ce3fe[_0x2b7d64(0x27e)]>_0x472bff&&(_0xf47384=_0x1ce3fe['slice'](0x0,_0x472bff)[_0x2b7d64(0x27f)](''),extraInfoInput['value']=_0xf47384),localStorage[_0x2b7d64(0x217)](_0x2b7d64(0x25c),_0x104444),localStorage[_0x2b7d64(0x217)](_0x2b7d64(0x259),_0x5f2a68[_0x2b7d64(0x226)]()),localStorage['setItem'](_0x2b7d64(0x1a7),_0x5abf5e),localStorage[_0x2b7d64(0x217)](_0x2b7d64(0x1bd),_0x1a2c73),_0x126581?localStorage['setItem'](_0x2b7d64(0x298),_0x126581):localStorage[_0x2b7d64(0x28a)](_0x2b7d64(0x298)),localStorage[_0x2b7d64(0x217)](_0x2b7d64(0x208),_0xf47384),socket[_0x2b7d64(0x27c)](_0x2b7d64(0x1ba),{'nickname':_0x104444,'level':_0x5f2a68,'job':_0x1a2c73,'socialCode':_0x126581,'extraInfo':_0xf47384});},createPrivatePartyBtn['addEventListener']('click',()=>{const _0xa9d426=_0x218639;if(createPrivatePartyBtn[_0xa9d426(0x26c)][_0xa9d426(0x1c7)]('private-active'))createPrivatePartyBtn['classList'][_0xa9d426(0x14b)](_0xa9d426(0x234)),privatePartyPassword=null,createPrivatePartyBtn[_0xa9d426(0x228)]='🔓\x20암호\x20없음';else{const _0x22d9e9=prompt(_0xa9d426(0x177));_0x22d9e9&&_0x22d9e9[_0xa9d426(0x270)]()!==''?(privatePartyPassword=_0x22d9e9['trim'](),createPrivatePartyBtn['classList'][_0xa9d426(0x207)](_0xa9d426(0x234)),createPrivatePartyBtn[_0xa9d426(0x228)]=_0xa9d426(0x2c3)):(privatePartyPassword=null,createPrivatePartyBtn['classList']['remove']('private-active'),createPrivatePartyBtn['textContent']=_0xa9d426(0x216));}}),createPartyBtn[_0x218639(0x1ea)]=()=>{const _0x4fc73e=_0x218639;positions[_0x4fc73e(0x27e)]=0x0;const _0x5470ba=document[_0x4fc73e(0x17f)](_0x4fc73e(0x242)),_0x8cc900=[];let _0x1b391f=!![];_0x5470ba[_0x4fc73e(0x24d)]((_0x3acf64,_0x36f82b)=>{const _0x9e77fe=_0x4fc73e,_0x3fbdb7=_0x3acf64[_0x9e77fe(0x158)]('.position-input')['value'][_0x9e77fe(0x270)](),_0x612bf7=_0x3acf64['querySelector'](_0x9e77fe(0x1f5))[_0x9e77fe(0x22f)][_0x9e77fe(0x270)](),_0x36b2cf=_0x612bf7[_0x9e77fe(0x161)](/[^0-9]/g,''),_0x40e38d=_0x3acf64[_0x9e77fe(0x158)](_0x9e77fe(0x2c5))?.[_0x9e77fe(0x26c)][_0x9e77fe(0x1c7)](_0x9e77fe(0x1cf));_0x3fbdb7?_0x8cc900[_0x9e77fe(0x2c0)]({'id':_0x9e77fe(0x1f9)+String(_0x36f82b),'name':_0x3fbdb7,'amount':_0x36b2cf,'isGrant':!!_0x40e38d,'closed':![]}):_0x1b391f=![];});if(!_0x1b391f||leaderPositionIndex===null||!partyNameInput[_0x4fc73e(0x22f)][_0x4fc73e(0x270)]()){alert(_0x4fc73e(0x196));return;}let _0x35f321=partyNameInput[_0x4fc73e(0x22f)][_0x4fc73e(0x270)]();const _0x316836=0x14,_0x2a63c8=Array['from'](_0x35f321);_0x2a63c8['length']>_0x316836&&(_0x35f321=_0x2a63c8[_0x4fc73e(0x2a4)](0x0,_0x316836)[_0x4fc73e(0x27f)](''),partyNameInput[_0x4fc73e(0x22f)]=_0x35f321);let _0x20faad=partyDescriptionInput[_0x4fc73e(0x22f)][_0x4fc73e(0x270)]();const _0x30c0ea=0x1e,_0x49eee0=Array[_0x4fc73e(0x151)](_0x20faad);_0x49eee0['length']>_0x30c0ea&&(_0x20faad=_0x49eee0[_0x4fc73e(0x2a4)](0x0,_0x30c0ea)[_0x4fc73e(0x27f)](''),partyDescriptionInput[_0x4fc73e(0x22f)]=_0x20faad);const _0x7b61f0=localStorage[_0x4fc73e(0x1b0)](_0x4fc73e(0x25c)),_0x1ba1db=Number(localStorage['getItem'](_0x4fc73e(0x259))),_0x247a4d=localStorage[_0x4fc73e(0x1b0)](_0x4fc73e(0x1bd)),_0x15450d=localStorage[_0x4fc73e(0x1b0)](_0x4fc73e(0x298));if(!_0x7b61f0||!_0x1ba1db||!_0x247a4d){nicknameInput[_0x4fc73e(0x1cc)](),nicknameInput[_0x4fc73e(0x1fc)]({'behavior':'smooth','block':'center'}),alert(_0x4fc73e(0x204));return;}if(!_0x15450d){socialCodeInput[_0x4fc73e(0x1cc)](),socialCodeInput['scrollIntoView']({'behavior':_0x4fc73e(0x1c5),'block':_0x4fc73e(0x247)}),showFadingMessage(saveMsg,_0x4fc73e(0x1a3),!![],socialCodeInput),alert('소셜\x20코드를\x20먼저\x20입력하고\x20저장하세요.');return;}const _0x39937c=_0x8cc900[leaderPositionIndex]?.['id'];socket['emit'](_0x4fc73e(0x184),{'partyName':_0x35f321,'description':_0x20faad,'password':privatePartyPassword,'positions':_0x8cc900,'leaderPosition':_0x39937c},_0x3e0a9f=>{const _0x5106cf=_0x4fc73e;if(!_0x3e0a9f['success']){_0x3e0a9f['reason']===_0x5106cf(0x24c)&&(nicknameInput[_0x5106cf(0x1cc)](),nicknameInput[_0x5106cf(0x1fc)]({'behavior':_0x5106cf(0x1c5),'block':_0x5106cf(0x247)}),alert(_0x5106cf(0x204)));return;}});},socket['on'](_0x218639(0x195),_0x356b9f=>{const _0x1c733=_0x218639;showFadingMessage(saveMsg,_0x356b9f[_0x1c733(0x2a5)]?_0x1c733(0x2ab):_0x356b9f[_0x1c733(0x182)]||_0x1c733(0x26a),!_0x356b9f[_0x1c733(0x2a5)]);}),socket['on'](_0x218639(0x1a1),()=>{const _0x2473d8=_0x218639;requestedPartyId=null,partyNameInput['value']='',positionInputsContainer['innerHTML']='',positionCount=0x0,leaderPositionIndex=null,createPartyBtn[_0x2473d8(0x1af)]=!![],socket[_0x2473d8(0x27c)](_0x2473d8(0x283));}),socket['on'](_0x218639(0x199),()=>{const _0x35d99b=_0x218639;alert(_0x35d99b(0x1a5)),myPartyId=null,amIPartyLeader=![],socialCodeInput[_0x35d99b(0x1af)]=![],updateMyPartyUI(null),resetPartyCreationFormAll(),socket['emit'](_0x35d99b(0x283));}),socket['on']('joined_party',_0x1731a5=>{const _0x45a206=_0x218639,_0x3ce8f5=_0x45a206(0x22a)+_0x1731a5[_0x45a206(0x1eb)]+_0x45a206(0x197)+(_0x45a206(0x163)+_0x1731a5[_0x45a206(0x222)]+')로\x20친구\x20요청을\x20보내보세요.\x0a')+('파티장\x20\x27'+_0x1731a5[_0x45a206(0x27b)]+_0x45a206(0x156));alert(_0x3ce8f5),myPartyId=_0x1731a5['partyId'],requestedPartyId=null,updateMyPartyUI({'partyId':_0x1731a5[_0x45a206(0x296)],'partyName':_0x1731a5['partyName']||'','description':_0x1731a5[_0x45a206(0x26b)]||'','positions':_0x1731a5[_0x45a206(0x233)]||[],'leaderId':_0x1731a5[_0x45a206(0x2be)]||'','members':_0x1731a5[_0x45a206(0x223)]}),socket['emit']('request_all_parties');}),socket['on']('left_party',()=>{alert('파티에서\x20탈퇴하였습니다.'),myPartyId=null,amIPartyLeader=![],updateMyPartyUI(null),resetPartyCreationFormAll(),socket['emit']('request_all_parties');}),socket['on'](_0x218639(0x1a8),()=>{const _0x2ae225=_0x218639;alert(_0x2ae225(0x21b)),myPartyId=null,amIPartyLeader=![],updateMyPartyUI(null),resetPartyCreationFormAll(),socket[_0x2ae225(0x27c)]('request_all_parties');}),socket['on'](_0x218639(0x19c),_0x16d280=>{const _0x1356ea=_0x218639,_0x3f101a=document[_0x1356ea(0x203)](_0x1356ea(0x1e3));_0x3f101a&&(_0x3f101a[_0x1356ea(0x228)]=_0x16d280[_0x1356ea(0x265)]+'명이\x20파티를\x20찾고\x20있어요.');}),socket['on'](_0x218639(0x210),_0x53bc9e=>{const _0x56cd49=_0x218639;updateMyPartyUI(_0x53bc9e[_0x56cd49(0x23d)]),renderAllParties(_0x53bc9e[_0x56cd49(0x241)]),pendingRequests[_0x56cd49(0x1df)](),_0x53bc9e[_0x56cd49(0x241)][_0x56cd49(0x24d)](_0x417577=>{const _0x482cf6=_0x56cd49;_0x417577[_0x482cf6(0x1fd)]&&Array[_0x482cf6(0x237)](_0x417577['requestedPositions'])&&pendingRequests['set'](_0x417577['partyId'],new Set(_0x417577[_0x482cf6(0x29b)]));});const _0x38d2e1=localStorage[_0x56cd49(0x1b0)](_0x56cd49(0x2bf));_0x38d2e1&&socket[_0x56cd49(0x27c)](_0x56cd49(0x25b),{'partyId':_0x38d2e1}),requestedPartyId=null,setLoading(![]);}),socket['on']('update_my_party',_0x241713=>{const _0x740596=_0x218639;updateMyPartyUI(_0x241713[_0x740596(0x23d)]);const _0x3c6fe5=localStorage[_0x740596(0x1b0)](_0x740596(0x2bf));_0x3c6fe5&&socket[_0x740596(0x27c)](_0x740596(0x25b),{'partyId':_0x3c6fe5}),requestedPartyId=null,setLoading(![]);}),socket['on'](_0x218639(0x1fb),_0x3fa254=>{const _0x5c00fb=_0x218639,_0x2f06=document[_0x5c00fb(0x158)](_0x5c00fb(0x294)+_0x3fa254[_0x5c00fb(0x296)]+'\x22]');if(!_0x2f06)return;const _0x57f37d=_0x2f06[_0x5c00fb(0x158)](_0x5c00fb(0x2b7));if(!_0x57f37d)return;document[_0x5c00fb(0x17f)](_0x5c00fb(0x2b7))[_0x5c00fb(0x24d)](_0x128bf1=>{const _0x479cfa=_0x5c00fb;_0x128bf1!==_0x57f37d&&(_0x128bf1[_0x479cfa(0x2bc)][_0x479cfa(0x285)]=_0x479cfa(0x1a4));}),localStorage[_0x5c00fb(0x217)](_0x5c00fb(0x2bf),_0x3fa254[_0x5c00fb(0x296)]),_0x57f37d[_0x5c00fb(0x232)]='',_0x57f37d[_0x5c00fb(0x2bc)][_0x5c00fb(0x285)]='block';const _0x5b6d73=myPartyId!==null;_0x3fa254[_0x5c00fb(0x233)][_0x5c00fb(0x24d)](_0x4178bc=>{const _0x4bf461=_0x5c00fb,_0x15a87f=document[_0x4bf461(0x24b)]('li');_0x15a87f['className']=_0x4bf461(0x288);const _0x179f50=_0x3fa254[_0x4bf461(0x223)][_0x4bf461(0x21a)](_0x4fa037=>_0x4fa037[_0x4bf461(0x261)]?.['id']===_0x4178bc['id']),{name:_0x225eb5,amount:_0x222487,isGrant:_0x36b01b}=_0x4178bc,_0x177f81=_0x222487?'\x20('+_0x222487+'만\x20'+(_0x36b01b?_0x4bf461(0x29d):'지참')+')':'',_0x185726=document[_0x4bf461(0x24b)]('span');_0x185726[_0x4bf461(0x189)]='pos',_0x185726[_0x4bf461(0x228)]='📌\x20'+_0x225eb5+_0x177f81,_0x15a87f[_0x4bf461(0x19a)](_0x185726);const _0x1f9c8f=document[_0x4bf461(0x24b)]('div');_0x1f9c8f[_0x4bf461(0x26c)][_0x4bf461(0x207)](_0x4bf461(0x220));const _0x12f9b1=document[_0x4bf461(0x24b)](_0x4bf461(0x277));_0x12f9b1[_0x4bf461(0x26c)][_0x4bf461(0x207)](_0x4bf461(0x16e));if(_0x179f50){_0x12f9b1['textContent']=_0x4bf461(0x235)+_0x179f50[_0x4bf461(0x259)]+'\x20'+_0x179f50[_0x4bf461(0x1bd)];_0x179f50[_0x4bf461(0x1ee)]===_0x3fa254[_0x4bf461(0x2be)]&&(_0x12f9b1[_0x4bf461(0x228)]+=_0x4bf461(0x1e4));_0x1f9c8f[_0x4bf461(0x19a)](_0x12f9b1);if(_0x179f50[_0x4bf461(0x208)]){const _0x2e75bd=document[_0x4bf461(0x24b)](_0x4bf461(0x277));_0x2e75bd[_0x4bf461(0x26c)][_0x4bf461(0x207)](_0x4bf461(0x26d)),_0x2e75bd[_0x4bf461(0x228)]=_0x4bf461(0x1c2)+_0x179f50[_0x4bf461(0x208)],bindTooltipEvents(_0x2e75bd,_0x179f50[_0x4bf461(0x208)]),_0x1f9c8f[_0x4bf461(0x19a)](_0x2e75bd);}}else _0x12f9b1['textContent']=_0x4178bc[_0x4bf461(0x2ac)]?_0x4bf461(0x1d4):_0x4bf461(0x2a2),_0x1f9c8f['appendChild'](_0x12f9b1);_0x15a87f[_0x4bf461(0x19a)](_0x1f9c8f);if(!_0x179f50&&!_0x4178bc[_0x4bf461(0x2ac)]&&!_0x5b6d73){const _0xbd1e4f=document[_0x4bf461(0x24b)](_0x4bf461(0x174));_0xbd1e4f[_0x4bf461(0x26c)][_0x4bf461(0x207)](_0x4bf461(0x174));const _0x2318cd=pendingRequests[_0x4bf461(0x1ff)](_0x3fa254[_0x4bf461(0x296)]);_0x2318cd?.[_0x4bf461(0x2a6)](_0x4178bc['id'])?(_0xbd1e4f[_0x4bf461(0x228)]=_0x4bf461(0x20d),_0xbd1e4f[_0x4bf461(0x1af)]=!![]):(_0xbd1e4f[_0x4bf461(0x228)]=_0x4bf461(0x211),_0xbd1e4f['onclick']=()=>{const _0x1c5cad=_0x4bf461;requestJoinParty(_0x3fa254['partyId'],_0x4178bc),_0xbd1e4f['textContent']=_0x1c5cad(0x20d),_0xbd1e4f[_0x1c5cad(0x1af)]=!![];}),_0x15a87f[_0x4bf461(0x19a)](_0xbd1e4f);}_0x57f37d[_0x4bf461(0x19a)](_0x15a87f);});}),socket['on'](_0x218639(0x1a6),_0x5b8f60=>{const _0x4bef35=_0x218639;renderJoinRequests(_0x5b8f60[_0x4bef35(0x1aa)],_0x5b8f60[_0x4bef35(0x1c6)]),joinRequestsSection[_0x4bef35(0x2bc)][_0x4bef35(0x285)]=_0x5b8f60[_0x4bef35(0x1aa)][_0x4bef35(0x27e)]>0x0?_0x4bef35(0x27d):_0x4bef35(0x1a4);}),socket['on'](_0x218639(0x172),_0x559490=>{const _0x25a8be=_0x218639,_0x12b813=_0x559490[_0x25a8be(0x296)],_0x2d00e3=_0x559490[_0x25a8be(0x261)],_0x1c63ad=_0x2d00e3?.['id'];if(!_0x1c63ad)return;const _0x3d6ec1=pendingRequests[_0x25a8be(0x1ff)](_0x12b813);_0x3d6ec1&&_0x3d6ec1[_0x25a8be(0x2a6)](_0x1c63ad)&&(_0x3d6ec1['delete'](_0x1c63ad),socket[_0x25a8be(0x27c)](_0x25a8be(0x25b),{'partyId':_0x559490['partyId']}),_0x3d6ec1[_0x25a8be(0x14e)]===0x0&&pendingRequests[_0x25a8be(0x26f)](_0x12b813));}),socket['on'](_0x218639(0x2b2),_0x4f7bb3=>{const _0x38c33a=_0x218639;alert(_0x4f7bb3[_0x38c33a(0x182)]||_0x38c33a(0x266)),requestedPartyId&&(requestedPartyId=null),socket[_0x38c33a(0x27c)](_0x38c33a(0x283));}),document[_0x218639(0x203)](_0x218639(0x2bd))[_0x218639(0x2b3)](_0x218639(0x1dc),function(){const _0x271888=_0x218639,_0x2df989=this['getAttribute'](_0x271888(0x157))==='true',_0x154a92=_0x2df989;localStorage[_0x271888(0x217)](_0x271888(0x164),_0x154a92[_0x271888(0x226)]()),applyMyInfoToggleState(_0x154a92);}),document[_0x218639(0x2b3)](_0x218639(0x162),()=>{const _0x4cc56f=_0x218639;applyTexts();const _0x230485=document[_0x4cc56f(0x203)](_0x4cc56f(0x21d));if(_0x230485){const _0x261f8c=document[_0x4cc56f(0x1fe)][_0x4cc56f(0x26c)][_0x4cc56f(0x1c7)](_0x4cc56f(0x23b));_0x230485[_0x4cc56f(0x228)]=_0x261f8c?'☀️':'🌙',_0x230485['onclick']=()=>{const _0x42308f=_0x4cc56f,_0xd9d50b=document[_0x42308f(0x1fe)],_0x4728c1=_0xd9d50b['classList'][_0x42308f(0x2b0)](_0x42308f(0x23b));localStorage[_0x42308f(0x217)](_0x42308f(0x176),_0x4728c1?_0x42308f(0x260):'disabled'),_0x230485['textContent']=_0x4728c1?'☀️':'🌙';};}const _0x1c0a26=document[_0x4cc56f(0x203)]('email'),_0x55cc49=document[_0x4cc56f(0x203)]('copyIcon');_0x1c0a26[_0x4cc56f(0x2b3)](_0x4cc56f(0x1dc),()=>{const _0x61f029=_0x4cc56f;navigator[_0x61f029(0x1f1)]['writeText'](_0x1c0a26[_0x61f029(0x228)][_0x61f029(0x270)]()),_0x55cc49[_0x61f029(0x228)]='✅',setTimeout(()=>{const _0x2cc75f=_0x61f029;_0x55cc49[_0x2cc75f(0x228)]='📋';},0x3e8);}),setLoading(!![]),initMyInfoToggle(),resetPartyCreationFormAll(),initializeAwesomplete(),initializeSocketEvents();}),document[_0x218639(0x158)]('h1')[_0x218639(0x2b3)](_0x218639(0x1dc),function(){window['location']['reload']();}),document[_0x218639(0x203)](_0x218639(0x23f))['addEventListener'](_0x218639(0x1dc),()=>{const _0x31fc05=_0x218639;window[_0x31fc05(0x28d)](_0x31fc05(0x1de),_0x31fc05(0x21f));});
+import { maps } from './map.js';
+
+const socket = io('wss://pamo.world', {
+    transports: ["websocket"]
+});
+
+// 사냥터 리스트
+const rawMapList = maps.map(g => g.name);
+// 사냥터별 위치 리스트
+const locationTemplates = Object.fromEntries(
+    maps.map(g => [g.name, g.positions])
+);
+
+const firstJobNames = {
+    전사: '검사',
+    법사: '매지션',
+    궁수: '아처',
+    도적: '로그'
+};
+
+const jobLines = {
+    전사: [
+        ['파이터', '크루세이더', '히어로'],
+        ['스피어맨', '용기사', '다크나이트'],
+        ['페이지', '나이트', '팔라딘']
+    ],
+    법사: [
+        ['위자드(불,독)', '메이지(불,독)', '아크메이지(불,독)'],
+        ['위자드(썬,콜)', '메이지(썬,콜)', '아크메이지(썬,콜)'],
+        ['클레릭', '프리스트', '비숍']
+    ],
+    궁수: [
+        ['헌터', '레인저', '보우마스터'],
+        ['사수', '저격수', '신궁']
+    ],
+    도적: [
+        ['어쌔신', '허밋', '나이트로드'],
+        ['시프', '시프마스터', '섀도어']
+    ]
+};
+
+// =========================
+// 텍스트 모음
+// =========================
+const TEXTS = {
+    header: {
+        title: "메랜파모",
+        timer: "⏱️",
+        darkMode: "🌙"
+    },
+    myInfo: {
+        title: "내 정보",
+        toggle: "접기",
+        nickname: "캐릭터 닉네임",
+        socialCode: "소셜코드 (#ABCDE)",
+        level: "레벨",
+        jobCategory: "직업",
+        jobDetail: "상세 직업",
+        extraInfo: "추가 정보 (스공/마력, 스킬)",
+        save: "저장"
+    },
+    myParty: {
+        title: "내 파티",
+        partyName: "사냥터 이름",
+        addPosition: "➕",
+        description: "파티 설명 입력",
+        createPrivate: "🔓 암호 없음",
+        create: "파티 생성",
+        editDescription: "수정"
+    },
+    joinRequests: {
+        title: "가입 요청 리스트",
+        hint: "📢 수락 후에는 메이플월드 소셜 친구 요청을 확인하거나, 게임 내 귓속말을 확인하세요."
+    },
+    allParties: {
+        title: "전체 파티 리스트",
+        search: "사냥터 이름 검색",
+        noParties: "현재 가입 가능한 파티가 없습니다."
+    },
+    footer: {
+        contact: "Contact •",
+        email: "pamo.world.official@gmail.com",
+        copyIcon: "📋",
+        copyright: "© 2025 메랜파모"
+    }
+};
+
+function applyTexts() {
+    // 헤더
+    document.querySelector("header h1").textContent = TEXTS.header.title;
+    document.getElementById("timerPageBtn").textContent = TEXTS.header.timer;
+    document.getElementById("darkModeToggle").textContent = TEXTS.header.darkMode;
+
+    // 내 정보 섹션
+    document.querySelector("#myInfoSection h2").textContent = TEXTS.myInfo.title;
+    document.getElementById("toggleMyInfoBtn").textContent = TEXTS.myInfo.toggle;
+    document.getElementById("nicknameInput").placeholder = TEXTS.myInfo.nickname;
+    document.getElementById("socialCodeInput").placeholder = TEXTS.myInfo.socialCode;
+    document.getElementById("levelInput").placeholder = TEXTS.myInfo.level;
+    document.querySelector("#jobCategorySelect option[disabled]").textContent = TEXTS.myInfo.jobCategory;
+    document.querySelector("#jobSelect option[disabled]").textContent = TEXTS.myInfo.jobDetail;
+    document.getElementById("extraInfoInput").placeholder = TEXTS.myInfo.extraInfo;
+    document.getElementById("saveUserBtn").textContent = TEXTS.myInfo.save;
+
+    // 내 파티 섹션
+    document.querySelector("#myPartySection h2").textContent = TEXTS.myParty.title;
+    document.getElementById("partyNameInput").placeholder = TEXTS.myParty.partyName;
+    document.getElementById("addPositionBtn").textContent = TEXTS.myParty.addPosition;
+    document.getElementById("partyDescriptionInput").placeholder = TEXTS.myParty.description;
+    document.getElementById("partyDescriptionEdit").placeholder = TEXTS.myParty.description;
+    document.getElementById("createPrivatePartyBtn").textContent = TEXTS.myParty.createPrivate;
+    document.getElementById("createPartyBtn").textContent = TEXTS.myParty.create;
+    document.getElementById("editDescriptionBtn").textContent = TEXTS.myParty.editDescription;
+
+    // 가입 요청
+    document.querySelector("#joinRequestsSection h2").textContent = TEXTS.joinRequests.title;
+    document.getElementById("joinRequestsHint").textContent = TEXTS.joinRequests.hint;
+
+    // 전체 파티
+    document.querySelector("#allPartiesSection h2").textContent = TEXTS.allParties.title;
+    document.getElementById("partySearchInput").placeholder = TEXTS.allParties.search;
+    document.getElementById("noPartiesMsg").textContent = TEXTS.allParties.noParties;
+
+    // footer
+    document.getElementById("contactText").textContent = TEXTS.footer.contact;
+    document.getElementById("email").textContent = TEXTS.footer.email;
+    document.getElementById("copyIcon").textContent = TEXTS.footer.copyIcon;
+    document.getElementById("copyright").textContent = TEXTS.footer.copyright;
+}
+
+// 유저 UI
+const nicknameInput = document.getElementById('nicknameInput');
+const levelInput = document.getElementById('levelInput');
+const jobCategorySelect = document.getElementById("jobCategorySelect");
+const jobSelect = document.getElementById('jobSelect');
+const socialCodeInput = document.getElementById('socialCodeInput');
+const extraInfoInput = document.getElementById('extraInfoInput');
+const saveMsg = document.getElementById('saveMsg');
+const saveUserBtn = document.getElementById('saveUserBtn');
+
+// 파티 생성/가입 UI
+const partyNameInput = document.getElementById('partyNameInput');
+const partyDescriptionInput = document.getElementById('partyDescriptionInput');
+const partyDescriptionContainer = document.getElementById('partyDescriptionContainer');
+const partyDescriptionEdit = document.getElementById('partyDescriptionEdit');
+const editDescriptionBtn = document.getElementById('editDescriptionBtn');
+const partyDescriptionView = document.getElementById('partyDescriptionView');
+const addPositionBtn = document.getElementById('addPositionBtn');
+const positionInputsContainer = document.getElementById('positionInputsContainer');
+const createPartyBtn = document.getElementById('createPartyBtn');
+const createPrivatePartyBtn = document.getElementById('createPrivatePartyBtn');
+
+const partySearchInput = document.getElementById('partySearchInput');
+
+function initMyInfoToggle() {
+    const collapsed = localStorage.getItem('myInfoCollapsed') === 'true';
+    applyMyInfoToggleState(collapsed);
+}
+
+function applyMyInfoToggleState(collapsed) {
+    const toggleBtn = document.getElementById('toggleMyInfoBtn');
+    const myInfoContent = document.getElementById('MyinfoContents');
+
+    toggleBtn.setAttribute('aria-expanded', !collapsed);
+    myInfoContent.style.display = collapsed ? 'none' : 'block';
+    toggleBtn.textContent = collapsed ? '펼치기' : '접기';
+}
+
+function getJobStage(level) {
+    if (level >= 120) return 2;
+    if (level >= 70) return 1;
+    if (level >= 30) return 0;
+    return -1;
+}
+
+let currentJobLineIndex = null;
+let currentJobCategoryTemp = null;
+let currentJobName = null;
+
+function updateJobOptionsRestore(categoryOverride, jobOverride) {
+    const category = categoryOverride || jobCategorySelect.value;
+    const level = Number(levelInput.value);
+
+    jobSelect.innerHTML = '<option value="" selected disabled>상세 직업</option>';
+
+    if (!category) {
+        jobSelect.disabled = true;
+        return;
+    }
+
+    // 1차 직업 자동 선택
+    if (level < 30) {
+        const firstJob = firstJobNames[category];
+        if (firstJob) {
+            const option = document.createElement("option");
+            option.value = firstJob;
+            option.textContent = firstJob;
+            jobSelect.appendChild(option);
+
+            jobSelect.value = firstJob;
+            jobSelect.disabled = false;
+        } else {
+            jobSelect.disabled = true;
+        }
+        return;
+    }
+
+    const stage = getJobStage(level);
+    const lines = jobLines[category];
+    if (!lines) {
+        jobSelect.disabled = true;
+        return;
+    }
+
+    const jobs = lines.map(line => line[stage]);
+    jobs.forEach(job => {
+        const option = document.createElement("option");
+        option.value = job;
+        option.textContent = job;
+        jobSelect.appendChild(option);
+    });
+
+    if (jobOverride) {
+        jobSelect.value = jobOverride;
+        for (let i = 0; i < lines.length; i++) {
+            if (lines[i].includes(jobOverride)) {
+                currentJobLineIndex = i;
+                currentJobCategoryTemp = category;
+                currentJobName = jobOverride;
+                break;
+            }
+        }
+    } else if (currentJobCategoryTemp === category && currentJobLineIndex !== null && lines[currentJobLineIndex]) {
+        jobSelect.value = lines[currentJobLineIndex][stage];
+    } else {
+        jobSelect.value = "";
+        currentJobCategoryTemp = category;
+        currentJobLineIndex = null;
+        currentJobName = null;
+    }
+
+    jobSelect.disabled = false;
+}
+
+function updateJobOptions() {
+    updateJobOptionsRestore(jobCategorySelect.value, null);
+}
+
+levelInput.addEventListener("input", () => {
+    let val = parseInt(levelInput.value, 10);
+    if (val > 200) val = 200;
+    levelInput.value = val;
+    updateJobOptions();
+});
+
+jobCategorySelect.addEventListener("change", () => {
+    currentJobLineIndex = null;
+    currentJobCategoryTemp = null;
+    currentJobName = null;
+    updateJobOptions();
+});
+
+// 상세 직업 선택 시 계열 인덱스 저장
+jobSelect.addEventListener("change", () => {
+    const category = jobCategorySelect.value;
+    const lines = jobLines[category];
+    const selectedJob = jobSelect.value;
+
+    if (!lines) return;
+
+    currentJobCategoryTemp = category;
+    currentJobName = selectedJob;
+
+    for (let i = 0; i < lines.length; i++) {
+        if (lines[i].includes(selectedJob)) {
+            currentJobLineIndex = i;
+            break;
+        }
+    }
+});
+
+let myUserId = null;
+let myPartyId = null;
+let amIPartyLeader = false;
+let privatePartyPassword = null; // 비밀 파티 암호 저장용 변수
+
+let requestedPartyId = null;
+let pendingRefresh = false;
+
+const SOCIAL_CODE_PATTERN = /^#[A-Za-z0-9]{5}$/;
+
+let positions = [];
+let leaderPositionIndex = null;
+let positionCount = 0;
+const maxPositions = 8;
+
+const pendingRequests = new Map();
+
+// 툴팁
+let currentTooltip = null;
+let tooltipTarget = null;
+
+function showTooltip(message, targetEl) {
+    if (currentTooltip) currentTooltip.remove();
+
+    tooltipTarget = targetEl;
+
+    const tip = document.createElement("div");
+    tip.textContent = message;
+    Object.assign(tip.style, {
+        position: "absolute",
+        background: "rgba(0,0,0,0.85)",
+        color: "#fff",
+        padding: "6px 10px",
+        borderRadius: "6px",
+        zIndex: "9999",
+        lineHeight: "1.4",
+        maxWidth: "320px",
+        whiteSpace: "normal",
+        wordBreak: "break-word",
+        overflowWrap: "anywhere",
+        boxSizing: "border-box",
+    });
+    document.body.appendChild(tip);
+
+    const rect = targetEl.getBoundingClientRect();
+    const tr = tip.getBoundingClientRect();
+
+    // 기본: 하단
+    let top = window.scrollY + rect.bottom + 8;
+    // let left = window.scrollX + rect.left + (rect.width - tr.width) / 2;
+    let left = window.scrollX + rect.left;
+
+    // 하단 공간 부족 → 상단
+    if (window.innerHeight - rect.bottom < tr.height + 8) {
+        top = window.scrollY + rect.top - tr.height - 8;
+    }
+
+    // 좌우 화면 밖 보정
+    const margin = 8;
+    const minLeft = window.scrollX + margin;
+    const maxLeft = window.scrollX + window.innerWidth - tr.width - margin;
+    if (left < minLeft) left = minLeft;
+    if (left > maxLeft) left = maxLeft;
+
+    // 상/하 화면 밖 보정
+    const minTop = window.scrollY + margin;
+    const maxTop = window.scrollY + window.innerHeight - tr.height - margin;
+    if (top < minTop) top = minTop;
+    if (top > maxTop) top = maxTop;
+
+    tip.style.top = `${top}px`;
+    tip.style.left = `${left}px`;
+
+    currentTooltip = tip;
+}
+
+// PC/모바일 구분해서 이벤트 바인딩
+function bindTooltipEvents(el, message) {
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (isTouch) {
+        // 모바일 → 클릭 시 표시
+        el.addEventListener("click", (e) => {
+            e.stopPropagation();
+            showTooltip(message, el);
+        });
+    } else {
+        // PC → 마우스 오버 시 표시
+        el.addEventListener("mouseenter", () => showTooltip(message, el));
+        el.addEventListener("mouseleave", () => {
+            if (currentTooltip) {
+                currentTooltip.remove();
+                currentTooltip = null;
+                tooltipTarget = null;
+            }
+        });
+    }
+}
+
+// 바깥 클릭 시 닫기
+document.addEventListener("click", (e) => {
+    if (currentTooltip && !currentTooltip.contains(e.target) && e.target !== tooltipTarget) {
+        currentTooltip.remove();
+        currentTooltip = null;
+        tooltipTarget = null;
+    }
+});
+
+// 메시지 변수
+let svgmsgElement = null; // 현재 표시 중인 메시지
+let svgmsgInputElement = null; // 현재 표시 중인 에러 입력 필드
+let messageTimeout = null; // 메시지 타이머
+
+function showFadingMessage(el, message, isError = false, inputElement = null) {
+    // 기존 메시지 요소와 테두리 요소가 있으면 삭제
+    if (svgmsgElement) {
+        svgmsgElement.remove();
+        svgmsgElement = null; // 초기화
+    }
+
+    if (svgmsgInputElement) {
+        svgmsgInputElement.classList.remove('input-error');
+        svgmsgInputElement = null; // 초기화
+    }
+
+    // 새로운 메시지 요소 생성
+    svgmsgElement = document.createElement('div');
+    svgmsgElement.textContent = message;
+    svgmsgElement.style.color = isError ? 'red' : 'green';
+    svgmsgElement.classList.add('fade-message'); // fade 효과 추가
+
+    // 기존 메시지 영역에 새 메시지 삽입
+    el.appendChild(svgmsgElement);
+
+    // 빨간 테두리 추가 (에러 메시지가 있을 때만)
+    if (inputElement && isError) {
+        svgmsgInputElement = inputElement; // 현재 에러 입력 필드 저장
+        svgmsgInputElement.classList.add('input-error');
+    }
+
+    // 이전 타이머가 존재하면 삭제
+    if (messageTimeout) {
+        clearTimeout(messageTimeout);
+        messageTimeout = null; // 초기화
+    }
+
+    // 3초 후 메시지와 빨간 테두리 삭제
+    messageTimeout = setTimeout(() => {
+        if (svgmsgElement) svgmsgElement.remove();
+        if (svgmsgInputElement) svgmsgInputElement.classList.remove('input-error');
+
+        // 객체 초기화
+        svgmsgElement = null;
+        svgmsgInputElement = null;
+    }, 3000);
+}
+
+// 입력 유효성 체크
+function checkAllInputsFilled() {
+    const allInputsFilled = [...document.querySelectorAll('.position-input')].every(input => input.value.trim() !== '');
+    const partyName = partyNameInput.value.trim();
+    const isLeaderSelected = leaderPositionIndex !== null;
+    createPartyBtn.disabled = !(allInputsFilled && partyName && isLeaderSelected);
+}
+
+// 초성 + 숫자 + 영어를 포함한 문자열로 변환
+function getChosungWithNumEng(str) {
+    const CHOSUNG = [
+        "ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ",
+        "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ",
+        "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"
+    ];
+
+    return [...str].map(char => {
+        const code = char.charCodeAt(0) - 44032;
+        if (code >= 0 && code <= 11171) {
+            return CHOSUNG[Math.floor(code / 588)];
+        }
+        if (/[0-9a-zA-Z]/.test(char)) {
+            return char.toLowerCase(); // 숫자, 영어는 그대로
+        }
+        return '';
+    }).join('');
+}
+
+// 순서대로 포함되는지 확인 (위치도 반환 가능)
+function isSequentialMatch(source, target) {
+    let i = 0;
+    let lastIndex = -1;
+    for (; i < target.length; i++) {
+        const idx = source.indexOf(target[i], lastIndex + 1);
+        if (idx === -1) return false;
+        lastIndex = idx;
+    }
+    return true;
+}
+
+function filterItems(item, input) {
+    if (!input || input.trim() === '') return true;
+
+    const itemLower = item.toLowerCase();
+    const inputLower = input.toLowerCase().replace(/\s+/g, '');
+    const inputParts = inputLower.split('').filter(ch => ch.trim() !== '');
+
+    const hasChosung = inputParts.some(part => /^[ㄱ-ㅎ]$/.test(part));
+    const hasNumber = inputParts.some(part => /^[0-9]$/.test(part));
+    const hasWord = /[a-zA-Z가-힣]/.test(inputLower);
+
+    const chosungTarget = getChosungWithNumEng(itemLower);
+
+    // 초성 + 숫자 혼합 (숫자-초성 or 초성-숫자 구분해서 match)
+    if (hasChosung && hasNumber && !hasWord) {
+        const combinedInput = inputParts.filter(ch => /^[ㄱ-ㅎ0-9]$/.test(ch)).join('');
+
+        // 완전히 연속된 시퀀스로 match
+        return isSequentialMatch(chosungTarget, combinedInput);
+    }
+
+    // 초성만
+    if (hasChosung && !hasNumber && !hasWord) {
+        const inputChosungStr = inputParts.join('');
+        return isSequentialMatch(chosungTarget, inputChosungStr);
+    }
+
+    // 숫자만
+    if (hasNumber && !hasChosung && !hasWord) {
+        return inputParts.every(num => isSequentialMatch(itemLower, num));
+    }
+
+    // 단어/문자 혼합은 원문 전체 대상으로 순서대로 포함 여부만 검사
+    return isSequentialMatch(itemLower, inputLower);
+}
+
+function filterPartyItem(party, input) {
+    if (!input || input.trim() === '') {
+        // 검색어가 빈 값이면 무조건 true (전체 표시)
+        return true;
+    }
+
+    const name = party.partyName || '';
+    const description = party.description || '';
+    const combined = `${name} ${description}`;
+
+    return filterItems(combined, input);
+}
+
+socialCodeInput.addEventListener('input', () => {
+    let val = socialCodeInput.value;
+
+    // 한글이 포함되어 있으면 메시지 띄우기
+    if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(val)) {
+        showFadingMessage(saveMsg, '한글은 입력할 수 없습니다.', true, socialCodeInput);
+    }
+
+    // 사용자가 #을 포함한 모든 문자를 지웠을 경우 → 빈 값 유지
+    if (val.replace(/[^#]/g, '') === '' && val.replace(/#/g, '').trim() === '') {
+        socialCodeInput.value = '';
+        return;
+    }
+
+    // # 여러 개 있을 때 하나만 남기기
+    val = val.replace(/#+/g, '#');
+
+    // 맨 앞에 # 없으면 붙이기
+    if (!val.startsWith('#')) {
+        val = '#' + val.replace(/#/g, '');
+    }
+
+    // # 이후에는 영문/숫자만 남기기
+    val = val[0] + val.slice(1).replace(/[^A-Za-z0-9]/g, '');
+
+    // # 포함 6자리까지 자르기
+    val = val.slice(0, 6);
+
+    socialCodeInput.value = val;
+
+    // 커서가 # 앞에 안 가도록 고정
+    if (socialCodeInput.selectionStart <= 1) {
+        socialCodeInput.setSelectionRange(1, 1);
+    }
+});
+
+addPositionBtn.addEventListener('click', () => {
+    if (positionCount < maxPositions) {
+        const newRow = createPositionRow();
+        positionInputsContainer.appendChild(newRow);
+        positionCount++;
+    }
+});
+
+function setLoading(isLoading) {
+    const mainUI = document.getElementById('mainUI');
+    const overlay = document.getElementById('loadingOverlay');
+    if (!mainUI || !overlay) return;
+
+    if (isLoading) {
+        mainUI.classList.remove('visible');  // UI 숨기기
+        overlay.style.display = 'flex';      // 로딩 오버레이 보이기
+    } else {
+        overlay.style.display = 'none';      // 로딩 오버레이 숨기기
+        mainUI.classList.add('visible');     // UI 보이기
+    }
+}
+
+// 로컬에서 관리하는 가입 요청 리스트
+function requestJoinParty(partyId, position) {
+    requestedPartyId = partyId;
+    if (!pendingRequests.has(partyId)) {
+        pendingRequests.set(partyId, new Set());
+    }
+    pendingRequests.get(partyId).add(position.id);
+    socket.emit('request_join_party', { partyId, position });
+}
+
+function showToast(message, duration = 2500) {
+    let container = document.querySelector(".toast-container");
+    if (!container) {
+        container = document.createElement("div");
+        container.className = "toast-container";
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.textContent = message;
+    container.appendChild(toast);
+
+    // 애니메이션으로 나타나기
+    requestAnimationFrame(() => toast.classList.add("show"));
+
+    // duration 뒤에 제거
+    setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+}
+
+function createPositionRow(label = '') {
+    const positionDiv = document.createElement('div');
+    positionDiv.classList.add('form-group', 'position-row');
+
+    const positionInput = document.createElement('input');
+    positionInput.type = 'text';
+    positionInput.placeholder = '위치 (좌1)';
+    positionInput.classList.add('position-input');
+    positionInput.value = label;
+    positionInput.addEventListener('input', checkAllInputsFilled);
+
+    // 지원금 버튼 추가
+    const grantBtn = document.createElement('button');
+    grantBtn.type = 'button';
+    grantBtn.textContent = '💸';
+    grantBtn.className = 'grant-btn';
+    grantBtn.title = '지원금 받는 위치 선택';
+    grantBtn.setAttribute('tabindex', '-1');
+    grantBtn.addEventListener('click', () => {
+        if (grantBtn.classList.contains('selected-grant')) {
+            // 이미 선택된 버튼이라면 선택을 취소
+            grantBtn.classList.remove('selected-grant');
+        } else {
+            // 선택된 상태 추가
+            grantBtn.classList.add('selected-grant');
+            showToast("💸 지원금 버튼을 클릭했어요.");
+        }
+    });
+
+    const amountInput = document.createElement('input');
+    amountInput.type = 'number';
+    amountInput.placeholder = '금액 (만)';
+    amountInput.classList.add('amount-input');
+    amountInput.addEventListener('input', function () {
+        if (parseInt(amountInput.value) > 9999) {
+            amountInput.value = 9999;
+        }
+    });
+    amountInput.addEventListener('input', checkAllInputsFilled);
+
+    const crownBtn = document.createElement('button');
+    crownBtn.type = 'button';
+    crownBtn.textContent = '👑';
+    crownBtn.className = 'crown-btn';
+    crownBtn.title = '파티장 위치 선택';
+    crownBtn.setAttribute('tabindex', '-1');
+    crownBtn.onclick = () => {
+        const allCrowns = document.querySelectorAll('.crown-btn');
+        allCrowns.forEach(btn => {
+            btn.disabled = false;
+            btn.classList.remove('selected-crown');
+        });
+        crownBtn.disabled = true;
+        crownBtn.classList.add('selected-crown');
+        leaderPositionIndex = [...positionInputsContainer.children].indexOf(positionDiv);
+        checkAllInputsFilled();
+    };
+
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.textContent = '➖';
+    removeBtn.className = 'remove-position-btn';
+    removeBtn.title = '위치 삭제';
+    removeBtn.setAttribute('tabindex', '-1');
+    removeBtn.onclick = () => {
+        if (positionCount <= 2) {
+            alert('최소 2개의 자리(위치)가 필요합니다.\r\n(파티장 자리와 최소 1명의 파티원 자리)');
+            return;
+        }
+
+        if (leaderPositionIndex === [...positionInputsContainer.children].indexOf(positionDiv)) {
+            leaderPositionIndex = null;
+        }
+        positionDiv.remove();
+        positionCount--;
+        checkAllInputsFilled();
+    };
+
+    positionDiv.appendChild(positionInput);
+    positionDiv.appendChild(grantBtn)
+    positionDiv.appendChild(amountInput);
+    positionDiv.appendChild(crownBtn);
+    positionDiv.appendChild(removeBtn);
+    positionInputsContainer.appendChild(positionDiv);
+
+    return positionDiv;
+}
+
+// UI 업데이트 함수
+function updateMyPartyUI(myParty) {
+    if (!myParty) {
+        myPartyId = null;
+        amIPartyLeader = false;
+
+        noPartyDiv.style.display = 'block';
+        partyInfoDiv.style.display = 'none';
+        joinRequestsSection.style.display = 'none';
+        partyMembersList.innerHTML = '';
+        partyNameTitle.textContent = '';
+
+        if (partyDescriptionEdit) {
+            partyDescriptionEdit.value = '';
+        }
+        if (partyDescriptionView) {
+            partyDescriptionView.textContent = '';
+        }
+
+        partyControls.innerHTML = '';
+
+        return;
+    }
+
+    myPartyId = myParty.partyId;
+    amIPartyLeader = myParty.leaderId === myUserId;
+
+    // 파티장일 경우 소셜코드 수정 불가능
+    if (socialCodeInput) {
+        socialCodeInput.disabled = amIPartyLeader;
+    }
+
+    noPartyDiv.style.display = 'none';
+    partyInfoDiv.style.display = 'block';
+    partyNameTitle.textContent = myParty.partyName;
+
+    partyMembersList.innerHTML = '';
+
+    if (amIPartyLeader) {
+        if (partyDescriptionContainer) {
+            partyDescriptionContainer.style.display = 'flex';
+        }
+        if (partyDescriptionEdit) {
+            partyDescriptionEdit.value = myParty.description || '';
+        }
+        if (partyDescriptionView) {
+            partyDescriptionView.style.display = 'none';
+        }
+
+        // 수정 버튼 쿨타임
+        initEditDescriptionCooldown(myParty.partyId, socket);
+
+        renderPartyControls(myParty.partyId);
+    } else {
+        if (partyDescriptionContainer) {
+            partyDescriptionContainer.style.display = 'none';
+        }
+        if (partyDescriptionView) {
+            partyDescriptionView.style.display = 'block';
+            partyDescriptionView.textContent = myParty.description ? `📝 ${myParty.description}` : '';
+        }
+
+        renderLeaveButton(myParty.partyId);
+    }
+
+    if (amIPartyLeader && myParty.joinRequests?.length > 0) {
+        joinRequestsSection.style.display = 'block';
+        renderJoinRequests(myParty.joinRequests, myParty.positions);
+    } else {
+        joinRequestsSection.style.display = 'none';
+        joinRequestsList.innerHTML = '';
+    }
+
+    if (myParty.positions && myParty.members) {
+        renderPartyPositions(myParty.positions, myParty.members);
+    }
+}
+
+// 파티 탈퇴 버튼
+function renderLeaveButton(partyId) {
+    partyControls.innerHTML = '';
+    const controlContainer = document.createElement('div');
+    controlContainer.className = 'party-controls-container';
+
+    const leaveBtn = document.createElement('button');
+    leaveBtn.classList.add('leave-button');
+    leaveBtn.textContent = '파티 탈퇴';
+    leaveBtn.onclick = () => {
+        if (amIPartyLeader) {
+            alert('파티장은 탈퇴할 수 없습니다. 먼저 파티를 해체하세요.');
+            return;
+        }
+        if (confirm('파티에서 탈퇴하시겠습니까?')) {
+            socket.emit('leave_party', { partyId });
+        }
+    };
+
+    controlContainer.appendChild(leaveBtn);
+    partyControls.appendChild(controlContainer);
+}
+
+// 파티 해체 버튼 렌더링
+function renderPartyControls(partyId) {
+    partyControls.innerHTML = '';
+    const controlContainer = document.createElement('div');
+    controlContainer.className = 'party-controls-container';
+
+    // 끌어올리기 버튼
+    const refreshBtn = document.createElement('button');
+    refreshBtn.classList.add('refresh-button');
+
+    // 끌어올리기 쿨타임 기능
+    const storageKey = `refresh_${partyId}`;
+    const lastClicked = Number(localStorage.getItem(storageKey) || 0);
+    const now = Date.now();
+    const cooldown = 3 * 60 * 1000; // 3분
+    let intervalId;
+    function startCooldown(durationMs) {
+        refreshBtn.disabled = true;
+
+        if (intervalId) clearInterval(intervalId);
+
+        const endTime = Date.now() + durationMs;
+
+        // 텍스트 즉시 바꾸기
+        const leftInitial = Math.ceil(durationMs / 1000);
+        refreshBtn.textContent = `⏳ ${leftInitial}초`;
+
+        intervalId = setInterval(() => {
+            const left = Math.ceil((endTime - Date.now()) / 1000);
+            if (left <= 0) {
+                refreshBtn.disabled = false;
+                refreshBtn.textContent = '파티 끌어올리기';
+                clearInterval(intervalId);
+            } else {
+                refreshBtn.textContent = `⏳ ${left}초`;
+            }
+        }, 1000);
+    }
+
+    // 끌어올리기 버튼 상태 설정
+    let remaining = Math.max(0, cooldown - (now - lastClicked));
+    if (remaining > 0) {
+        refreshBtn.disabled = true;
+        refreshBtn.textContent = `⏳ ${Math.ceil(remaining / 1000)}초`;
+        startCooldown(remaining);
+    } else {
+        refreshBtn.disabled = false;
+        refreshBtn.textContent = '파티 끌어올리기';
+    }
+    refreshBtn.onclick = () => {
+        // 소켓 연결 상태 확인
+        if (!socket.connected) {
+            pendingRefresh = true; // 큐에 등록
+        } else {
+            socket.emit('refresh_party_time');
+        }
+        localStorage.setItem(storageKey, Date.now().toString());
+        startCooldown(cooldown); // 3분 타이머 시작
+    };
+
+    const disbandBtn = document.createElement('button');
+    disbandBtn.classList.add('leave-button');
+    disbandBtn.textContent = '파티 해체';
+    disbandBtn.onclick = () => {
+        if (confirm('파티를 해체하시겠습니까?')) {
+            socket.emit('disband_party', { partyId });
+        }
+    };
+
+    controlContainer.appendChild(refreshBtn);
+    controlContainer.appendChild(disbandBtn);
+    partyControls.appendChild(controlContainer);
+}
+
+// 가입 요청 리스트 렌더링
+function renderJoinRequests(requests, partyPositions) {
+    joinRequestsList.innerHTML = '';
+
+    // 서버에서 올바르게 position 단위 객체로 전송되었는지 확인
+    if (!Array.isArray(requests)) return;
+
+    // position별로 그룹핑
+    const groupedByPosition = new Map();
+
+    // 요청 순서대로 그룹화하면서 요청 시간 순으로 정렬
+    requests.forEach(req => {
+        if (!req.position || !req.requestTime) return; // position과 requestTime이 없는 요청은 무시
+
+        const positionId = req.position?.id;
+        if (!positionId) return;
+
+        // position별로 그룹화
+        if (!groupedByPosition.has(positionId)) {
+            groupedByPosition.set(positionId, []);
+        }
+
+        // 요청 시간 순서대로 유저 정보 추가
+        groupedByPosition.get(positionId).push({
+            userId: req.userId,
+            nickname: req.nickname,
+            level: req.level,
+            job: req.job,
+            socialCode: req.socialCode,
+            extraInfo: req.extraInfo || '',
+            requestTime: req.requestTime // 요청 시간 추가
+        });
+    });
+
+    // 위치 순서대로 그룹화된 리스트를 렌더링
+    partyPositions.forEach(position => {
+        // 해당 위치의 요청이 있는지 확인
+        const positionId = position.id;
+        const users = groupedByPosition.get(positionId);
+        if (!users || users.length === 0) return; // 요청이 없으면 skip
+
+        // 위치명을 포함한 제목을 추가
+        const { name, amount, isGrant } = position;
+        const amtText = amount ? ` (${amount}만 ${isGrant ? '지원💸' : '지참'})` : '';
+        const positionTitle = document.createElement('h3');
+        positionTitle.textContent = `📍 ${name}${amtText}`;
+        joinRequestsList.appendChild(positionTitle);
+
+        // 해당 위치에 대한 요청을 요청 시간 순으로 정렬
+        users.sort((a, b) => new Date(a.requestTime) - new Date(b.requestTime)); // 요청 시간 순으로 정렬
+
+        // 정렬된 순서대로 유저들을 렌더링
+        users.forEach(userReq => {
+            const displayName = userReq.socialCode ? `${userReq.nickname} (${userReq.socialCode})` : userReq.nickname;
+
+            const li = document.createElement('li');
+            li.classList.add('join-request-item');
+
+            const infoContainer = document.createElement('div');
+            infoContainer.classList.add('info-container');
+
+            const mainInfo = document.createElement('div');
+            mainInfo.classList.add('main-info');
+            mainInfo.textContent = `👤 Lv.${userReq.level} ${userReq.job} 🆔 ${displayName}`;
+            infoContainer.appendChild(mainInfo);
+
+            if (userReq.extraInfo) {
+                const extraInfo = document.createElement('div');
+                extraInfo.classList.add('extra-info');
+                extraInfo.textContent = `ℹ️ ${userReq.extraInfo}`;
+                bindTooltipEvents(extraInfo, extraInfo.textContent);
+                infoContainer.appendChild(extraInfo);
+            }
+
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('button-container');
+
+            const acceptBtn = document.createElement('button');
+            acceptBtn.textContent = '수락';
+            acceptBtn.classList.add('accept');
+            acceptBtn.onclick = () => {
+                socket.emit('handle_join_request', {
+                    partyId: myPartyId,
+                    userId: userReq.userId,
+                    position: { id: position.id },
+                    accept: true
+                });
+            };
+
+            const rejectBtn = document.createElement('button');
+            rejectBtn.textContent = '거절';
+            rejectBtn.classList.add('reject');
+            rejectBtn.onclick = () => {
+                socket.emit('handle_join_request', {
+                    partyId: myPartyId,
+                    userId: userReq.userId,
+                    position: { id: position.id },
+                    accept: false
+                });
+            };
+
+            buttonContainer.appendChild(acceptBtn);
+            buttonContainer.appendChild(rejectBtn);
+
+            li.appendChild(infoContainer);
+            li.appendChild(buttonContainer);
+
+            joinRequestsList.appendChild(li);
+        });
+    });
+}
+
+// 내 파티 위치별 멤버 표시
+function renderPartyPositions(positions, members) {
+    partyMembersList.innerHTML = '';
+
+    positions.forEach(position => {
+        const li = document.createElement('li');
+        li.className = 'party-member-info';
+
+        const { name, amount, isGrant } = position;
+        const amtText = amount ? ` (${amount}만 ${isGrant ? '지원💸' : '지참'})` : '';
+        const assigned = members.find(m => m.position?.id === position.id);
+
+        const posDiv = document.createElement('div');
+        posDiv.classList.add('pos');
+        posDiv.textContent = `📌 ${name}${amtText}`;
+
+        const infoContainer = document.createElement('div');
+        infoContainer.classList.add('info-container');
+
+        const mainInfo = document.createElement('div');
+        mainInfo.classList.add('main-info');
+
+        if (assigned) {
+            const displayName = assigned.socialCode ? `${assigned.nickname} (${assigned.socialCode})` : assigned.nickname;
+            mainInfo.textContent = `👤 Lv.${assigned.level} ${assigned.job} 🆔 ${displayName}`;
+            infoContainer.appendChild(mainInfo);
+
+            if (assigned.extraInfo) {
+                const extraInfo = document.createElement('div');
+                extraInfo.classList.add('extra-info');
+                extraInfo.textContent = `ℹ️ ${assigned.extraInfo}`;
+                bindTooltipEvents(extraInfo, assigned.extraInfo);
+                infoContainer.appendChild(extraInfo);
+            }
+        } else {
+            if (position.closed) {
+                mainInfo.textContent = '✅ 모집 완료';
+            }
+            else {
+                mainInfo.textContent = '🪑 모집 중';
+            }
+            infoContainer.appendChild(mainInfo);
+        }
+
+        const buttonContainer = document.createElement('div');
+
+        if (amIPartyLeader) {
+            if (assigned && assigned.userId !== myUserId) {
+                const kickBtn = document.createElement('button');
+                kickBtn.textContent = '추방';
+                kickBtn.className = 'kick red-button small-button';
+                kickBtn.onclick = () => {
+                    if (confirm(`정말로 "${position.name}"에 있는 ${assigned.nickname}님을 추방하시겠습니까?`)) {
+                        socket.emit('kick_member', {
+                            partyId: myPartyId,
+                            userId: assigned.userId
+                        });
+                    }
+                };
+                buttonContainer.appendChild(kickBtn);
+
+            } else if (!assigned && position.closed) {
+                const reopenBtn = document.createElement('button');
+                reopenBtn.textContent = '완료 취소';
+                reopenBtn.className = 'yellow-button small-button';
+                reopenBtn.onclick = () => {
+                    if (confirm(`"${position.name}" 모집 완료를 취소하시겠습니까?`)) {
+                        socket.emit('reopen_position', {
+                            partyId: myPartyId,
+                            positionId: position.id
+                        });
+                    }
+                };
+                buttonContainer.appendChild(reopenBtn);
+
+            } else if (!assigned && !position.closed) {
+                const closeBtn = document.createElement('button');
+                closeBtn.textContent = '모집 완료';
+                closeBtn.className = 'green-button small-button';
+                closeBtn.onclick = () => {
+                    if (confirm(`"${position.name}" 모집을 완료하시겠습니까?`)) {
+                        socket.emit('close_position', {
+                            partyId: myPartyId,
+                            positionId: position.id
+                        });
+                    }
+                };
+                buttonContainer.appendChild(closeBtn);
+            }
+        }
+
+        li.appendChild(posDiv);
+        li.appendChild(infoContainer);
+        li.appendChild(buttonContainer);
+
+        partyMembersList.appendChild(li);
+    });
+}
+
+function renderAllParties(allParties) {
+    allPartiesList.innerHTML = '';
+    const noPartiesMsg = document.getElementById('noPartiesMsg');
+    const searchTerm = partySearchInput?.value.trim().toLowerCase();
+    localStorage.setItem('partySearchTerm', searchTerm);
+
+    const filteredParties = allParties.filter(party => filterPartyItem(party, searchTerm));
+    if (filteredParties.length === 0) {
+        noPartiesMsg.textContent = '현재 가입 가능한 파티가 없습니다.';
+        noPartiesMsg.style.display = 'block';
+        allPartiesList.style.display = 'none';
+        return;
+    } else {
+        noPartiesMsg.textContent = '';
+        noPartiesMsg.style.display = 'none';
+        allPartiesList.style.display = 'block';
+    }
+
+    filteredParties.sort((a, b) => {
+        const aClosedCount = a.positions.filter(p => p.closed).length;
+        const aCurrentCount = a.members.length + aClosedCount;
+        const aIsFull = aCurrentCount >= a.positions.length ? 1 : 0;
+
+        const bClosedCount = b.positions.filter(p => p.closed).length;
+        const bCurrentCount = b.members.length + bClosedCount;
+        const bIsFull = bCurrentCount >= b.positions.length ? 1 : 0;
+
+        // 1순위: 풀파티 여부 (풀파티는 뒤로)
+        if (aIsFull !== bIsFull) return aIsFull - bIsFull;
+
+        // 2순위: 생성 시간 (최신순)
+        return b.createdAt - a.createdAt;
+    });
+
+    filteredParties.forEach(party => {
+        const partyItemContainer = document.createElement('div');
+        partyItemContainer.classList.add('party-item-container');
+        partyItemContainer.setAttribute('data-party-id', party.partyId);
+
+        const partyItem = document.createElement('li');
+        partyItem.classList.add('party-item');
+
+        const closedCount = party.positions.filter(p => p.closed).length;
+        const currentCount = party.members.length + closedCount;
+        const totalCount = party.positions.length;
+
+        const leftSpan = document.createElement('span');
+        const description = party.description?.trim();
+        const lockIcon = party.hasPassword ? '🔒 ' : '';
+
+        leftSpan.textContent = description
+            ? `${lockIcon}${party.partyName} - ${description}`
+            : `${lockIcon}${party.partyName}`;
+        leftSpan.style.flex = '1'; // 좌측 정렬
+        leftSpan.style.whiteSpace = 'nowrap';
+        leftSpan.style.overflow = 'hidden';
+        leftSpan.style.textOverflow = 'ellipsis';
+        bindTooltipEvents(leftSpan, leftSpan.textContent);
+
+        const rightSpan = document.createElement('span');
+        rightSpan.textContent = `👥 ${currentCount}/${totalCount}`;
+        if (currentCount >= totalCount) {
+            rightSpan.style.color = 'red';
+        }
+        rightSpan.style.textAlign = 'right';
+        rightSpan.style.whiteSpace = 'nowrap';
+        rightSpan.style.marginLeft = '1rem';
+        rightSpan.style.marginRight = '10px';
+
+        partyItem.style.display = 'flex';
+        partyItem.style.justifyContent = 'space-between';
+        partyItem.style.alignItems = 'center';
+
+        partyItem.appendChild(leftSpan);
+        partyItem.appendChild(rightSpan);
+
+        const detailsBtn = document.createElement('button');
+        detailsBtn.textContent = '상세보기';
+        detailsBtn.classList.add('details-btn');
+        detailsBtn.onclick = () => {
+            togglePartyDetails(party);
+        };
+
+        const buttonContainer = document.createElement('div');
+        buttonContainer.style.textAlign = 'right';
+        buttonContainer.appendChild(detailsBtn);
+        partyItem.appendChild(buttonContainer);
+
+        const positionsList = document.createElement('ul');
+        positionsList.classList.add('positions-list');
+        positionsList.style.display = 'none';
+
+        partyItemContainer.appendChild(partyItem);
+        partyItemContainer.appendChild(positionsList);
+        allPartiesList.appendChild(partyItemContainer);
+    });
+}
+
+async function verifyPartyPassword(partyId, inputPwd) {
+    return new Promise((resolve) => {
+        socket.emit('verify_party_password', { partyId, password: inputPwd }, (response) => {
+            resolve(response);
+        });
+    });
+}
+
+// 파티 상세보기 로직 (암호 파티 로직 적용)
+async function togglePartyDetails(party) {
+    const alreadyOpenId = localStorage.getItem('openPartyId');
+
+    if (alreadyOpenId === party.partyId) {
+        localStorage.removeItem('openPartyId');
+        const container = document.querySelector(`[data-party-id="${party.partyId}"] .positions-list`);
+        if (container) container.style.display = 'none';
+        return;
+    }
+
+    document.querySelectorAll('.positions-list').forEach(el => el.style.display = 'none');
+
+    if (party.hasPassword) {
+        const inputPwd = prompt('비밀 파티입니다.\r\n암호를 입력하세요:');
+        if (inputPwd === null) return; // 취소
+
+        try {
+            const result = await verifyPartyPassword(party.partyId, inputPwd);
+            if (!result.success) {
+                alert(result.message || '암호가 틀렸습니다.');
+                return;
+            }
+        } catch {
+            alert('서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+            return;
+        }
+    }
+
+    localStorage.setItem('openPartyId', party.partyId);
+    socket.emit('get_party_details', { partyId: party.partyId });
+}
+
+function resetPartyCreationForm() {
+    if (!addPositionBtn) return;
+
+    positionInputsContainer.innerHTML = '';
+    positionCount = 0;
+    leaderPositionIndex = null;
+    positions = [];
+
+    for (let i = 0; i < 2; i++) {
+        addPositionBtn.click();
+    }
+
+    createPartyBtn.disabled = true;
+}
+
+function resetPartyCreationFormAll() {
+    resetPartyCreationForm();
+
+    if (partyNameInput) {
+        partyNameInput.value = '';
+        partyNameInput.dataset.selected = 'false'; // 선택 상태 초기화
+    }
+}
+
+// 파티 설명 수정 버튼 쿨타임
+function initEditDescriptionCooldown(partyId, socket) {
+    if (!editDescriptionBtn || !partyDescriptionEdit) return;
+
+    const cooldownKey = `desc_${partyId}`;
+    const cooldownMs = 60 * 1000;
+    let intervalId;
+
+    function startCooldown(durationMs) {
+        const endTime = Date.now() + durationMs;
+        localStorage.setItem(cooldownKey, endTime.toString());
+
+        editDescriptionBtn.disabled = true;
+        partyDescriptionEdit.disabled = true;
+
+        const initialLeft = Math.ceil(durationMs / 1000);
+        editDescriptionBtn.textContent = `⏳ ${initialLeft}초`;
+
+        if (intervalId) clearInterval(intervalId);
+
+        intervalId = setInterval(() => {
+            const left = Math.ceil((endTime - Date.now()) / 1000);
+            if (left <= 0) {
+                clearInterval(intervalId);
+                intervalId = null;
+
+                editDescriptionBtn.disabled = false;
+                partyDescriptionEdit.disabled = false;
+                editDescriptionBtn.textContent = '수정';
+            } else {
+                editDescriptionBtn.textContent = `⏳ ${left}초`;
+            }
+        }, 1000);
+    }
+
+    // 페이지 로드시 남은 시간 복원
+    const storedEnd = Number(localStorage.getItem(cooldownKey) || 0);
+    const now = Date.now();
+    const remaining = Math.max(0, storedEnd - now);
+
+    if (remaining > 0) {
+        startCooldown(remaining);
+    } else {
+        editDescriptionBtn.disabled = false;
+        partyDescriptionEdit.disabled = false;
+        editDescriptionBtn.textContent = '수정';
+    }
+
+    // 버튼 클릭 이벤트
+    editDescriptionBtn.addEventListener('click', () => {
+        const newDescription = partyDescriptionEdit.value.trim();
+        if (!newDescription) return;
+
+        startCooldown(cooldownMs);
+        socket.emit('update_party_description', { partyId, description: newDescription });
+    });
+}
+
+function initializeSocketEvents() {
+    // 소켓 이벤트 핸들러
+    socket.on('connect', () => {
+
+        myUserId = localStorage.getItem('userId');
+        if (myUserId) {
+            socket.emit('restore_user', { userId: myUserId });
+        } else {
+            socket.emit('request_user');
+        }
+
+        if (pendingRefresh) {
+            socket.emit('refresh_party_time');
+            pendingRefresh = false;
+        }
+
+        const savedNickname = localStorage.getItem('nickname');
+        const savedLevel = localStorage.getItem('level');
+        const savedJobCategory = localStorage.getItem('jobCategory');
+        const savedJob = localStorage.getItem('job');
+        const savedSocialCode = localStorage.getItem('socialCode');
+        const savedExtraInfo = localStorage.getItem('extraInfo');
+
+        const savedSearch = localStorage.getItem('partySearchTerm');
+
+        if (savedNickname) nicknameInput.value = savedNickname;
+        if (savedLevel) levelInput.value = savedLevel;
+        if (savedJobCategory) jobCategorySelect.value = savedJobCategory;
+        updateJobOptionsRestore(savedJobCategory, savedJob);
+        if (savedSocialCode) socialCodeInput.value = savedSocialCode;
+        if (savedExtraInfo) extraInfoInput.value = savedExtraInfo;
+
+        if (savedSearch && partySearchInput) {
+            partySearchInput.value = savedSearch;
+        }
+
+        if (partySearchInput) {
+            partySearchInput.addEventListener('input', () => {
+                socket.emit('request_all_parties');
+            });
+        }
+    });
+
+    socket.on('user_id_assigned', data => {
+        myUserId = data.userId;
+        localStorage.setItem('userId', myUserId);
+
+        socket.emit('request_all_parties');
+    });
+
+    socket.on('user_restored', data => {
+        myUserId = data.userId;
+        localStorage.setItem('userId', myUserId);
+
+        myPartyId = null;
+        amIPartyLeader = false;
+
+        socialCodeInput.disabled = false;
+
+        updateMyPartyUI(null);
+        resetPartyCreationFormAll();
+        socket.emit('request_all_parties');
+    });
+}
+
+function initializeAwesomplete() {
+    const partyNameInput = document.getElementById('partyNameInput');
+
+    if (partyNameInput) {
+        const awesompleteSource = rawMapList; // 이제 label만 있는 배열 사용
+
+        new Awesomplete(partyNameInput, {
+            list: awesompleteSource,
+            minChars: 1,
+            maxItems: 10,
+            autoFirst: true,
+            filter: function (item, input) {
+                return filterItems(item, input); // 수정된 필터 함수 적용
+            },
+            item: function (item, input) {
+                // 기본적인 항목 하이라이트
+                const label = item;
+                // const regex = new RegExp(input, 'gi');
+                const escaped = input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(escaped, 'gi');
+                const highlighted = label.replace(regex, match => `<strong>${match}</strong>`);
+                const li = document.createElement("li");
+                li.innerHTML = highlighted;
+                return li;
+            },
+            replace: function (item) {
+                this.input.value = item;
+                this.input.dataset.selected = "true"; // 선택된 상태 표시
+
+                if (typeof user !== 'undefined' && user.partyId) return;
+
+                if (item.trim() === '') {
+                    resetPartyCreationFormAll();
+                    return;
+                }
+
+                // 위치 템플릿 적용
+                if (locationTemplates[item]) {
+                    positionInputsContainer.innerHTML = '';
+                    positionCount = 0;
+                    leaderPositionIndex = null;
+
+                    // 템플릿 적용
+                    locationTemplates[item].forEach(pos => {
+                        const newRow = createPositionRow(pos);
+                        positionInputsContainer.appendChild(newRow);
+                        positionCount++;
+                    });
+
+                    // 템플릿 개수가 2개 미만이면, 빈 칸이라도 기본 2개까지 채워주기
+                    while (positionCount < 2) {
+                        const newRow = createPositionRow('');  // 빈 이름으로 생성
+                        positionInputsContainer.appendChild(newRow);
+                        positionCount++;
+                    }
+
+                    checkAllInputsFilled();
+                    return;
+                }
+                else {
+                    resetPartyCreationForm();
+                }
+            }
+        });
+
+        // 사용자가 입력한 값이 리스트에 없으면, 빈 값으로 처리
+        partyNameInput.addEventListener('input', function () {
+            const isValid = awesompleteSource.includes(partyNameInput.value.trim());
+            if (!isValid) {
+                this.dataset.selected = "false"; // 유효하지 않다고 표시
+            }
+        });
+
+        // 사용자가 포커스를 벗어나면 리스트에서 선택된 값만 유효하고, 선택 안되었으면 빈 값으로
+        partyNameInput.addEventListener('blur', function () {
+            if (this.dataset.selected !== "true") {
+                this.value = "";  // 빈 값으로 초기화
+                this.dataset.selected = "false"; // 상태 초기화
+            }
+        });
+
+        // Tab 키를 눌렀을 때, 엔터 키처럼 처리하고 포커스를 이동
+        partyNameInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Tab') {
+                // Tab을 눌렀을 때 Enter 키처럼 처리
+                event.preventDefault(); // Tab 키의 기본 동작을 막음
+
+                // 엔터키 이벤트를 강제로 트리거
+                const enterEvent = new KeyboardEvent('keydown', {
+                    key: 'Enter',
+                    keyCode: 13,
+                    code: 'Enter',
+                    which: 13,
+                    bubbles: true,
+                    cancelable: true
+                });
+
+                partyNameInput.dispatchEvent(enterEvent); // 엔터키 이벤트 발생
+
+                // 탭 순서를 따르기 위한 포커스 이동
+                const nextFocusableElement = getNextFocusableElement(partyNameInput);
+                if (nextFocusableElement) {
+                    nextFocusableElement.focus(); // 다음 포커스로 이동
+                }
+            }
+        });
+
+        // 탭 순서로 이동할 수 있는 요소를 찾는 함수
+        function getNextFocusableElement(currentElement) {
+            const allFocusableElements = Array.from(document.querySelectorAll('input, button, select, textarea, a[href]')).filter(el => !el.disabled && el.tabIndex >= 0);
+            const currentIndex = allFocusableElements.indexOf(currentElement);
+            return allFocusableElements[currentIndex + 1] || null; // 다음 포커스가 있을 경우 반환
+        }
+    }
+}
+
+// 서버에서 파티 설명 업데이트 받으면 UI 갱신
+socket.on('party_description_updated', data => {
+    if (data.partyId === myPartyId) {
+        partyDescriptionView.textContent = data.description ? `📝 ${data.description}` : '';
+        if (partyDescriptionEdit.style.display === 'block') {
+            partyDescriptionEdit.value = data.description || '';
+        }
+    }
+});
+
+// 저장 버튼
+saveUserBtn.onclick = () => {
+    let nickname = nicknameInput.value.trim();
+    let level = Number(levelInput.value);
+    let jobCategory = jobCategorySelect.value;
+    let job = jobSelect.value;
+    let socialCode = socialCodeInput?.value.trim();
+    let extraInfo = extraInfoInput.value.trim();
+
+    let hasError = false;
+
+    if (!nickname) {
+        showFadingMessage(saveMsg, '닉네임을 입력하세요.', true, nicknameInput);
+        hasError = true;
+    } else if (!Number.isInteger(level) || level < 1 || level > 200) {
+        showFadingMessage(saveMsg, '레벨을 입력하세요.', true, levelInput);
+        hasError = true;
+    } else if (!job) {
+        showFadingMessage(saveMsg, '직업을 선택하세요.', true, jobSelect);
+        hasError = true;
+    } else if (socialCode && !SOCIAL_CODE_PATTERN.test(socialCode)) {
+        showFadingMessage(saveMsg, '소셜 코드를 입력하세요.', true, socialCodeInput);
+        hasError = true;
+    }
+
+    if (hasError) return;
+
+    // 닉네임 길이 제한 (최대 16자)
+    const maxNicknameLength = 16;
+    const nicknameArray = Array.from(nickname);
+    if (nicknameArray.length > maxNicknameLength) {
+        nickname = nicknameArray.slice(0, maxNicknameLength).join('');
+        nicknameInput.value = nickname;
+    }
+
+    // 추가 정보 길이 제한 (최대 50자)
+    const maxExtraInfoLength = 50;
+    const extraInfoArray = Array.from(extraInfo);
+    if (extraInfoArray.length > maxExtraInfoLength) {
+        extraInfo = extraInfoArray.slice(0, maxExtraInfoLength).join('');
+        extraInfoInput.value = extraInfo;
+    }
+
+    // localStorage에 저장
+    localStorage.setItem('nickname', nickname);
+    localStorage.setItem('level', level.toString());
+    localStorage.setItem('jobCategory', jobCategory);
+    localStorage.setItem('job', job);
+    if (socialCode) {
+        localStorage.setItem('socialCode', socialCode);
+    } else {
+        localStorage.removeItem('socialCode');
+    }
+    localStorage.setItem('extraInfo', extraInfo);
+
+    // 서버에 전송
+    socket.emit('save_user_info', { nickname, level, job, socialCode, extraInfo });
+};
+
+// 파티 암호 설정
+createPrivatePartyBtn.addEventListener('click', () => {
+    if (createPrivatePartyBtn.classList.contains('private-active')) {
+        createPrivatePartyBtn.classList.remove('private-active');
+        privatePartyPassword = null;
+        createPrivatePartyBtn.textContent = '🔓 암호 없음';
+    } else {
+        const input = prompt('비밀 파티 암호를 입력하세요.');
+        if (input && input.trim() !== '') {
+            privatePartyPassword = input.trim();
+            createPrivatePartyBtn.classList.add('private-active');
+            createPrivatePartyBtn.textContent = '🔒 암호 있음';
+        } else {
+            privatePartyPassword = null;
+            createPrivatePartyBtn.classList.remove('private-active');
+            createPrivatePartyBtn.textContent = '🔓 암호 없음';
+        }
+    }
+});
+
+// 파티 생성 버튼
+createPartyBtn.onclick = () => {
+    positions.length = 0;
+    const positionRows = document.querySelectorAll('.position-row'); // 각 위치와 금액을 포함하는 div
+    const positionData = []; // 서버로 보낼 고유 id 포함된 위치 목록
+
+    let isValid = true;
+    positionRows.forEach((row, idx) => {
+        const pos = row.querySelector('.position-input').value.trim();
+        const rawAmt = row.querySelector('.amount-input').value.trim();
+        const amt = rawAmt.replace(/[^0-9]/g, '');
+        const isGrant = row.querySelector('.grant-btn')?.classList.contains('selected-grant');
+
+        if (pos) {
+            positionData.push({
+                id: 'pos-' + String(idx), // 고유 index
+                name: pos,
+                amount: amt,
+                isGrant: !!isGrant,
+                closed: false
+            });
+        } else {
+            isValid = false;
+        }
+    });
+
+    if (!isValid || leaderPositionIndex === null || !partyNameInput.value.trim()) {
+        alert('파티 이름과 위치를 모두 입력하고, 파티장의 위치를 지정해주세요.');
+        return;
+    }
+
+    // 파티 이름 길이 제한
+    let partyName = partyNameInput.value.trim();
+    const maxLength = 20;
+    const charArray = Array.from(partyName);
+    if (charArray.length > maxLength) {
+        partyName = charArray.slice(0, maxLength).join('');
+        partyNameInput.value = partyName;
+    }
+
+    // 파티 설명 길이 제한
+    let description = partyDescriptionInput.value.trim();
+    const maxDescLength = 30;
+    const descCharArray = Array.from(description);
+    if (descCharArray.length > maxDescLength) {
+        description = descCharArray.slice(0, maxDescLength).join('');
+        partyDescriptionInput.value = description;
+    }
+
+    // 저장된 사용자 정보 가져오기
+    const savedNickname = localStorage.getItem('nickname');
+    const savedLevel = Number(localStorage.getItem('level'));
+    const savedJob = localStorage.getItem('job');
+    const savedSocialCode = localStorage.getItem('socialCode');
+
+    // 저장된 정보가 없으면 경고 메시지 띄우기
+    if (!savedNickname || !savedLevel || !savedJob) {
+        nicknameInput.focus(); // 포커스 이동
+        nicknameInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 스크롤 이동
+        alert('내 정보를 먼저 입력하고 저장하세요.');
+        return;
+    }
+
+    // 소셜 코드가 저장되지 않았다면 경고 메시지 띄우기
+    if (!savedSocialCode) {
+        socialCodeInput.focus(); // 포커스 이동
+        socialCodeInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 스크롤 이동
+        showFadingMessage(saveMsg, '소셜 코드를 입력하고 저장하세요.', true, socialCodeInput);
+        alert('소셜 코드를 먼저 입력하고 저장하세요.');
+        return;
+    }
+
+    // 파티장 위치 지정
+    const leaderPosition = positionData[leaderPositionIndex]?.id;
+
+    socket.emit('create_party', {
+        partyName,
+        description,
+        password: privatePartyPassword,
+        positions: positionData,
+        leaderPosition
+    }, (response) => {
+        if (!response.success) {
+            if (response.reason === 'no_user_info') {
+                nicknameInput.focus(); // 포커스 이동
+                nicknameInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 스크롤 이동
+                alert('내 정보를 먼저 입력하고 저장하세요.');
+            }
+            return;
+        }
+    });
+};
+
+socket.on('save_user_info_result', data => {
+    showFadingMessage(saveMsg, data.success ? '저장 완료' : (data.message || '저장 실패'), !data.success);
+});
+
+socket.on('party_created', () => {
+    requestedPartyId = null;
+    partyNameInput.value = '';
+    positionInputsContainer.innerHTML = '';
+    positionCount = 0;
+    leaderPositionIndex = null;
+    createPartyBtn.disabled = true;
+    socket.emit('request_all_parties');
+});
+
+socket.on('party_disbanded', () => {
+    alert('파티가 해체되었습니다.');
+    myPartyId = null;
+    amIPartyLeader = false;
+
+    socialCodeInput.disabled = false;
+
+    updateMyPartyUI(null);
+    resetPartyCreationFormAll();
+    socket.emit('request_all_parties');
+});
+
+socket.on('joined_party', data => {
+    const message =
+        `📢 [${data.partyName}] 파티에 가입되었습니다.\n메이플월드 소셜 메뉴에서\n` +
+        `소셜 코드(${data.leaderSocialCode})로 친구 요청을 보내보세요.\n` +
+        `파티장 '${data.leaderNickname}'에게 귓속말을 보내도 됩니다.`;
+    alert(message);
+    myPartyId = data.partyId;
+    requestedPartyId = null;
+    updateMyPartyUI({
+        partyId: data.partyId,
+        partyName: data.partyName || '',
+        description: data.description || '',
+        positions: data.positions || [],
+        leaderId: data.leaderId || '',
+        members: data.members,
+    });
+    socket.emit('request_all_parties');
+});
+
+socket.on('left_party', () => {
+    alert('파티에서 탈퇴하였습니다.');
+    myPartyId = null;
+    amIPartyLeader = false;
+
+    updateMyPartyUI(null);
+    resetPartyCreationFormAll();
+    socket.emit('request_all_parties');
+});
+
+socket.on('kicked_from_party', () => {
+    alert('파티에서 추방되었습니다.');
+    myPartyId = null;
+    amIPartyLeader = false;
+
+    updateMyPartyUI(null);
+    resetPartyCreationFormAll();
+    socket.emit('request_all_parties');
+});
+
+socket.on('update_connected_count', data => {
+    const connectedCount = document.getElementById("connectedCount");
+    if (connectedCount) {
+        connectedCount.textContent = `${data.count}명이 파티를 찾고 있어요.`;
+    }
+});
+
+socket.on('update_user_parties', data => {
+    updateMyPartyUI(data.myParty);
+    renderAllParties(data.allParties);
+
+    pendingRequests.clear();
+    data.allParties.forEach(p => {
+        if (p.amRequested && Array.isArray(p.requestedPositions)) {
+            pendingRequests.set(p.partyId, new Set(p.requestedPositions));
+        }
+    });
+
+    const openId = localStorage.getItem('openPartyId');
+    if (openId) {
+        socket.emit('get_party_details', { partyId: openId });
+    }
+
+    requestedPartyId = null;
+
+    setLoading(false);
+});
+
+socket.on('update_my_party', data => {
+    updateMyPartyUI(data.myParty);
+
+    const openId = localStorage.getItem('openPartyId');
+    if (openId) {
+        socket.emit('get_party_details', { partyId: openId });
+    }
+
+    requestedPartyId = null;
+
+    setLoading(false);
+});
+
+socket.on('party_details', party => {
+    const partyItemContainer = document.querySelector(`[data-party-id="${party.partyId}"]`);
+    if (!partyItemContainer) return;
+
+    const positionsList = partyItemContainer.querySelector('.positions-list');
+    if (!positionsList) return;
+
+    document.querySelectorAll('.positions-list').forEach(el => {
+        if (el !== positionsList) {
+            el.style.display = 'none';
+        }
+    });
+
+    localStorage.setItem('openPartyId', party.partyId);
+
+    positionsList.innerHTML = '';
+    positionsList.style.display = 'block';
+
+    const currentUserInParty = myPartyId !== null;
+
+    party.positions.forEach(position => {
+        const li = document.createElement('li');
+        li.className = 'member-info';
+
+        const member = party.members.find(m => m.position?.id === position.id);
+        const { name, amount, isGrant } = position;
+        const amtText = amount ? ` (${amount}만 ${isGrant ? '지원💸' : '지참'})` : '';
+
+        const positionText = document.createElement('span');
+        positionText.className = 'pos';
+        positionText.textContent = `📌 ${name}${amtText}`;
+        li.appendChild(positionText);
+
+        const infoContainer = document.createElement('div');
+        infoContainer.classList.add('info-container');
+
+        const mainInfo = document.createElement('div');
+        mainInfo.classList.add('main-info');
+
+        if (member) {
+            mainInfo.textContent = `👤 Lv.${member.level} ${member.job}`;
+            if (member.userId === party.leaderId) {
+                mainInfo.textContent += ' 👑';
+            }
+            infoContainer.appendChild(mainInfo);
+
+            if (member.extraInfo) {
+                const extraInfo = document.createElement('div');
+                extraInfo.classList.add('extra-info');
+                extraInfo.textContent = `ℹ️ ${member.extraInfo}`;
+                bindTooltipEvents(extraInfo, member.extraInfo);
+                infoContainer.appendChild(extraInfo);
+            }
+        } else {
+            mainInfo.textContent = position.closed ? '✅ 모집 완료' : '🪑 모집 중';
+            infoContainer.appendChild(mainInfo);
+        }
+        li.appendChild(infoContainer);
+
+        if (!member && !position.closed && !currentUserInParty) {
+            const requestBtn = document.createElement('button');
+            requestBtn.classList.add('button');
+            const requestedSet = pendingRequests.get(party.partyId);
+            if (requestedSet?.has(position.id)) {
+                requestBtn.textContent = '신청 중';
+                requestBtn.disabled = true;
+            } else {
+                requestBtn.textContent = '가입 신청';
+                requestBtn.onclick = () => {
+                    requestJoinParty(party.partyId, position);
+                    requestBtn.textContent = '신청 중';
+                    requestBtn.disabled = true;
+                };
+            }
+            li.appendChild(requestBtn);
+        }
+
+        positionsList.appendChild(li);
+    });
+});
+
+socket.on('join_requests_updated', data => {
+    renderJoinRequests(data.requests, data.partyPositions);
+    joinRequestsSection.style.display = data.requests.length > 0 ? 'block' : 'none';
+});
+
+// 가입 요청 거절
+socket.on('join_request_rejected', data => {
+    const partyId = data.partyId;
+    const position = data.position;
+    const positionId = position?.id;
+    if (!positionId) return;
+
+    const requestedSet = pendingRequests.get(partyId);
+    if (requestedSet && requestedSet.has(positionId)) {
+        requestedSet.delete(positionId);
+
+        socket.emit('get_party_details', { partyId: data.partyId });
+
+        // 만약 빈 Set이 됐다면 Map에서 제거
+        if (requestedSet.size === 0) {
+            pendingRequests.delete(partyId);
+        }
+    }
+});
+
+socket.on('error_message', data => {
+    alert(data.message || '에러가 발생했습니다.');
+    if (requestedPartyId) {
+        requestedPartyId = null;
+    }
+    socket.emit('request_all_parties');
+});
+
+// 내 정보 섹션 토글
+document.getElementById('toggleMyInfoBtn').addEventListener('click', function () {
+    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+    const newCollapsed = isExpanded;
+    localStorage.setItem('myInfoCollapsed', newCollapsed.toString());
+    applyMyInfoToggleState(newCollapsed);
+});
+
+// Awesomplete 초기화
+document.addEventListener('DOMContentLoaded', () => {
+    applyTexts();
+
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if (darkModeToggle) {
+        const isDark = document.documentElement.classList.contains('dark-mode');
+        darkModeToggle.textContent = isDark ? '☀️' : '🌙';
+        darkModeToggle.onclick = () => {
+            const html = document.documentElement;
+            const isDarkNow = html.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDarkNow ? 'enabled' : 'disabled');
+            darkModeToggle.textContent = isDarkNow ? '☀️' : '🌙';
+        };
+    }
+
+    const emailEl = document.getElementById("email");
+    const iconEl = document.getElementById("copyIcon");
+
+    emailEl.addEventListener("click", () => {
+        navigator.clipboard.writeText(emailEl.textContent.trim());
+        iconEl.textContent = "✅";
+        setTimeout(() => {
+            iconEl.textContent = "📋";
+        }, 1000);
+    });
+
+    setLoading(true);
+
+    initMyInfoToggle();
+    resetPartyCreationFormAll();
+    initializeAwesomplete();
+    initializeSocketEvents();
+});
+
+document.querySelector('h1').addEventListener('click', function () {
+    // 새로고침
+    window.location.reload();
+});
+
+document.getElementById('timerPageBtn').addEventListener('click', () => {
+    // 새 탭에서 timer 페이지 열기
+    window.open('/timer', '_blank');
+});
